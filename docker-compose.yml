@@ -1,0 +1,38 @@
+version: '3'
+services:
+  mysql_db:
+    container_name: mysql_db_container
+    command: --explicit_defaults_for_timestamp=1
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    build: ./db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: development
+      MYSQL_USER: tfi_user
+      MYSQL_PASSWORD: tfi_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db/data:/var/lib/mysql
+      - ./db/mysql:/docker-entrypoint-initdb.d
+
+  api:
+    container_name: api_container
+    build: ./backend
+    environment:
+      MYSQL_HOST: mysql_db
+      MYSQL_DATABASE: development
+      MYSQL_USER: tfi_user
+      MYSQL_PASSWORD: tfi_password
+    depends_on:
+      mysql_db:
+        condition: service_healthy
+
+volumes:
+  data: {
+    driver: local
+  }
