@@ -6,6 +6,7 @@ import {
   ManyToOne,
   ManyToMany,
   JoinTable,
+  BaseEntity,
 } from "typeorm";
 import { Pais } from "./Pais";
 import { Beneficio } from "./Beneficio";
@@ -14,7 +15,7 @@ import { Categoria } from "./Categoria";
 import { Observacion } from "./Observacion";
 
 @Entity("convocatoria")
-export class Convocatoria {
+export class Convocatoria extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 

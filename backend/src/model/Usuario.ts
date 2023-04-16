@@ -7,13 +7,14 @@ import {
   ManyToOne,
   UpdateDateColumn,
   CreateDateColumn,
+  BaseEntity,
 } from "typeorm";
 import { Pago } from "./Pago";
 import { Rol } from "./Rol";
 import { Pais } from "./Pais";
 
 @Entity("usuario")
-export class Usuario {
+export class Usuario extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
