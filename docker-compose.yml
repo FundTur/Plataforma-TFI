@@ -28,6 +28,8 @@ services:
       MYSQL_DATABASE: development
       MYSQL_USER: tfi_user
       MYSQL_PASSWORD: tfi_password
+    ports:
+      - "3000:3000"
     depends_on:
       mysql_db:
         condition: service_healthy
