@@ -13,6 +13,9 @@ import { DataSource } from "typeorm";
   import { Usuario } from "./model/Usuario";
 //End entities
 
+// Dotenv configuration
+require("dotenv").config();
+
 export const AppSource = new DataSource({
   type: "mysql",
   host: process.env.MYSQL_HOST,
