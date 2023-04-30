@@ -1,9 +1,9 @@
 FROM node:alpine
 
-WORKDIR /usr/src/app
+WORKDIR /backend/src/app
 
 # Copiamos el package.json y el package-lock.json
-COPY ["package.json", "package-lock.json", "tsconfig.json", ".env", "./"]
+COPY ["package.json", "package-lock.json", "tsconfig.json", "./"]
 
 # Instalamos las dependencias
 RUN npm ci
