@@ -1,6 +1,6 @@
 FROM node:alpine
 
-WORKDIR /backend/src/app
+WORKDIR /usr/src/app
 
 # Copiamos el package.json y el package-lock.json
 COPY ["package.json", "package-lock.json", "tsconfig.json", "./"]
