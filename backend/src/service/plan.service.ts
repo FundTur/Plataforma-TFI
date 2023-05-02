@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { getAll, getById } from "../repository/ciudad.repository";
+import { getAll, getById } from "../repository/plan.repository";
 import OutData from "../dto/outDataDTO";
 
-export const getAllCiudades = async (req: Request, res: Response) => {
+export const getAllPlanes = async (req: Request, res: Response) => {
   try {
     // Creamos el contenedor de datos de salida
     const outData = new OutData();
@@ -16,23 +16,23 @@ export const getAllCiudades = async (req: Request, res: Response) => {
     );
 
     // Obtenemos los datos de la base de datos
-    const [ciudades, totalCount] = await getAll(page, limit);
+    const [planes, totalCount] = await getAll(page, limit);
 
     // Asignamos los datos de salida
-    outData.data = ciudades;
+    outData.data = planes;
 
     // Si el limite es -1 significa que no se aplico ningun limite
     if (limit === -1) {
       outData.metadata = {
-        totalCount: ciudades.length,
-        filterCount: ciudades.length,
+        totalCount: planes.length,
+        filterCount: planes.length,
       };
     }
     // Si el limite es diferente de -1 significa que se aplico un limite de items para la consulta
     else {
       outData.metadata = {
         totalCount: totalCount,
-        filterCount: ciudades.length,
+        filterCount: planes.length,
       };
     }
 
@@ -47,18 +47,18 @@ export const getAllCiudades = async (req: Request, res: Response) => {
   }
 };
 
-export const getCiudad = async (req: Request, res: Response) => {
+export const getPlanes = async (req: Request, res: Response) => {
   try {
     // Creamos el contenedor de datos de salida
     const outData = new OutData();
 
     // Obtenemos los datos de la peticion
-    const CiudadId = parseInt(req.params.id as string);
+    const planId = parseInt(req.params.id as string);
 
     // Obtenemos los datos de la base de datos y los añadimos al contenedor de datos de salida
-    const ciudad: any[] = [await getById(CiudadId)];
+    const plan: any[] = [await getById(planId)];
 
-    outData.data = ciudad;
+    outData.data = plan;
 
     res.status(200).json(outData);
   } catch (error) {
