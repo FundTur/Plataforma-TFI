@@ -12,5 +12,6 @@ router.post("/", (req, res) => createPago(req, res));
 router.put("/:id", (req, res) => updatePago(req, res));
 
 router.delete("/:id", (req, res) => deletePago(req, res));
+// Faltan los endpoints de update, delete, create
 
 export default router;

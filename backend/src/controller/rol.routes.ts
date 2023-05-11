@@ -13,5 +13,6 @@ router.put("/:id", (req, res) => updateRol(req, res));
 
 router.delete("/:id", (req, res) => deleteRol(req, res));
 
+// Faltan los endpoints de update, delete, create
 
 export default router;

@@ -12,5 +12,6 @@ router.post("/", (req, res) => createPais(req, res));
 router.put("/:id", (req, res) => updatePais(req, res));
 
 router.delete("/:id", (req, res) => deletePais(req, res));
+// Faltan los endpoints de update, delete, create
 
 export default router;

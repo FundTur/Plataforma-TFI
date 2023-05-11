@@ -12,5 +12,6 @@ router.post("/", (req, res) => createBeneficio(req, res));
 router.put("/:id", (req, res) => updateBeneficio(req, res));
 
 router.delete("/:id", (req, res) => deleteBeneficio(req, res));
+// Faltan los endpoints de update, delete, create
 
 export default router;
