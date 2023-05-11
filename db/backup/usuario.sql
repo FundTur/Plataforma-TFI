@@ -1,0 +1,1 @@
+INSERT INTO development.usuario (id, nombres, apellidos, email, password, estado, telefono, estadoPlan, dateUpdated, dateCreated, rolId, paisId) VALUES (1, 'Administrador', 'Admin', 'admin@mail.com', 'AdminPassword', 'Habilitado', '00000000', 'Habilitado', '2023-05-11 20:37:34.681475', '2023-05-11 20:37:34.681475', null, null);
