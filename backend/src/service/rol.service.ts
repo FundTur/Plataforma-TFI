@@ -1,7 +1,11 @@
 import { Request, Response } from "express";
-import { create, getAll, getById } from "../repository/rol.repository";
+import { plainToClass } from "class-transformer";
+import DBError from "../dto/errors/DbError";
+import { getAll, getById, create, update, delete } from "../repository/rol.repository";
 import OutData from "../dto/outDataDTO";
 import { Rol } from "../model/Rol";
+
+
 
 export const getAllRoles = async (req: Request, res: Response) => {
   try {
@@ -72,20 +76,67 @@ export const getRol = async (req: Request, res: Response) => {
 };
 
 export const createRol = async (req: Request, res: Response) => {
-      
-  try{
+  try {
+    // Creamos el contenedor de datos de salida
+    const outData = new OutData();
+
+    // Obtenemos los datos de la peticion
+    const rol = plainToClass(Rol, req.body);
+
+    // Creamos el usuario
+    const RolCreated = await create(rol);
+
+    // Asignamos los datos de salida
+    outData.data = [RolCreated];
+    outData.metadata = {
+      totalCount: 1,
+      filterCount: 1,
+    };
     
-    //const rol: any = await create(rol);
-    
-  }
-  catch(error){
-    if(error instanceof Error){
+    // Devolvemos el usuario creado
+    res.status(200).json(outData);
+  } catch (error) {
+    if (error instanceof Error) {
       res
-      .status(500)
-      .json({ error: error.message, stack: error.stack, name: error.name });
+        .status(500)
+        .json({ error: error.message, stack: error.stack, name: error.name });
     }
-}
+  }
 };
 
+export const updateRol = async (req: Request, res: Response) => {
+  try {
+    // Creamos el contenedor de datos de salida
+    const outData = new OutData();
 
+    // Obtenemos los datos de la peticion
+    const rolId = parseInt(req.params.id as string);
+    const rol = plainToClass(Rol, req.body);
+
+    // Actualizamos el usuario
+    const rolUpdated = await update(rolId, rol);
+
+    // Asignamos los datos de salida
+    outData.data = [rolUpdated];
+    outData.metadata = {
+      totalCount: 1,
+      filterCount: 1,
+    };
+
+    // Devolvemos el usuario actualizado
+    res.status(200).json(outData);
+
+  } catch (error) {
+    if(error instanceof DBError){
+      res.status(404).json({ error: error.message, stack: error.stack, name: error.name });
+      return;
+    }
+
+    if (error instanceof Error) {
+      res
+        .status(500)
+        .json({ error: error.message, stack: error.stack, name: error.name });
+    }
+  }
+};
 
