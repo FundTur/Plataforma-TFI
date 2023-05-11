@@ -1,5 +1,6 @@
 import { Usuario } from "../model/Usuario";
 import { AppSource } from "../db";
+import DBError from "../dto/errors/DbError";
 
 // Consultas
 export async function getAll(
@@ -19,9 +20,13 @@ export async function getAll(
 }
 
 export async function getById(id: number): Promise<Usuario | null> {
-  return await Usuario.findOneBy({
-    id: id,
-  });
+  const userFind = await Usuario.findOneBy({id: id})
+  
+  if (!userFind) {
+    throw new DBError("Usuario no encontrado");
+  }
+
+  return userFind;
 }
 
 // Mutaciones
@@ -33,8 +38,11 @@ export async function update(id: number, usuario: Usuario): Promise<Usuario> {
   const usuarioFind = await getById(id);
 
   if (!usuarioFind) {
-    throw new Error("Usuario no encontrado");
+    throw new DBError("Usuario no encontrado");
   }
+
+  // Actualizamos los datos
+  usuario.id = id;
 
   return await usuario.save();
 }
@@ -44,7 +52,7 @@ export async function remove(id: number): Promise<Usuario | null> {
 
   // Si el usuario existe lo eliminamos
   if (!usuario) {
-      throw new Error("Usuario no encontrado");
+      throw new DBError("Usuario no encontrado");
   }
 
   return await usuario.remove();
