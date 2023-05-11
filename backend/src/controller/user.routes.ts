@@ -7,4 +7,6 @@ router.get("/", (req, res) => getAllUsers(req, res));
 
 router.get("/:id", (req, res) => getUser(req, res));
 
+// Faltan los endpoints de update, delete, create
+
 export default router;

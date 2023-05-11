@@ -7,4 +7,6 @@ router.get("/", (req, res) => getAllBeneficios(req, res));
 
 router.get("/:id", (req, res) => getBeneficio(req, res));
 
+// Faltan los endpoints de update, delete, create
+
 export default router;

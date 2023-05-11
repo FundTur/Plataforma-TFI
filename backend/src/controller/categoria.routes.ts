@@ -7,4 +7,6 @@ router.get("/", (req, res) => getAllCategorias(req, res));
 
 router.get("/:id", (req, res) => getCategoria(req, res));
 
+// Faltan los endpoints de update, delete, create
+
 export default router;

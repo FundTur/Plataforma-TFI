@@ -7,4 +7,6 @@ router.get("/", (req, res) => getAllPlanes(req, res));
 
 router.get("/:id", (req, res) => getPlanes(req, res));
 
+// Faltan los endpoints de update, delete, create
+
 export default router;
