@@ -1,9 +1,8 @@
 import { Request, Response } from "express";
-import { create, getAll, getById } from "../repository/rol.repository";
+import { getAll, getById } from "../repository/convocatoria.repository";
 import OutData from "../dto/outDataDTO";
-import { Rol } from "../model/Rol";
 
-export const getAllRoles = async (req: Request, res: Response) => {
+export const getAllConvocatorias = async (req: Request, res: Response) => {
   try {
     // Creamos el contenedor de datos de salida
     const outData = new OutData();
@@ -17,23 +16,23 @@ export const getAllRoles = async (req: Request, res: Response) => {
     );
 
     // Obtenemos los datos de la base de datos
-    const [roles, totalCount] = await getAll(page, limit);
+    const [convocatorias, totalCount] = await getAll(page, limit);
 
     // Asignamos los datos de salida
-    outData.data = roles;
+    outData.data = convocatorias;
 
     // Si el limite es -1 significa que no se aplico ningun limite
     if (limit === -1) {
       outData.metadata = {
-        totalCount: roles.length,
-        filterCount: roles.length,
+        totalCount: convocatorias.length,
+        filterCount: convocatorias.length,
       };
     }
     // Si el limite es diferente de -1 significa que se aplico un limite de items para la consulta
     else {
       outData.metadata = {
         totalCount: totalCount,
-        filterCount: roles.length,
+        filterCount: convocatorias.length,
       };
     }
 
@@ -48,18 +47,18 @@ export const getAllRoles = async (req: Request, res: Response) => {
   }
 };
 
-export const getRol = async (req: Request, res: Response) => {
+export const getConvocatorias = async (req: Request, res: Response) => {
   try {
     // Creamos el contenedor de datos de salida
     const outData = new OutData();
 
     // Obtenemos los datos de la peticion
-    const rolId = parseInt(req.params.id as string);
+    const convocatoriaId = parseInt(req.params.id as string);
 
     // Obtenemos los datos de la base de datos y los añadimos al contenedor de datos de salida
-    const rol: any[] = [await getById(rolId)];
+    const convocatoria: any[] = [await getById(convocatoriaId)];
 
-    outData.data = rol;
+    outData.data = convocatoria;
 
     res.status(200).json(outData);
   } catch (error) {
@@ -70,22 +69,3 @@ export const getRol = async (req: Request, res: Response) => {
     }
   }
 };
-
-export const createRol = async (req: Request, res: Response) => {
-      
-  try{
-    
-    //const rol: any = await create(rol);
-    
-  }
-  catch(error){
-    if(error instanceof Error){
-      res
-      .status(500)
-      .json({ error: error.message, stack: error.stack, name: error.name });
-    }
-}
-};
-
-
-
