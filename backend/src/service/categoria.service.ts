@@ -1,6 +1,10 @@
 import { Request, Response } from "express";
-import { getAll, getById } from "../repository/categoria.repository";
+import { plainToClass } from "class-transformer";
+import DBError from "../dto/errors/DbError";
+import { getAll, getById, create, update, remove } from "../repository/categoria.repository";
 import OutData from "../dto/outDataDTO";
+import { Categoria } from "../model/Categoria";
+
 
 export const getAllCategorias = async (req: Request, res: Response) => {
   try {
@@ -69,3 +73,93 @@ export const getCategoria = async (req: Request, res: Response) => {
     }
   }
 };
+
+export const createCategoria = async (req: Request, res: Response) => {
+  try {
+    // Creamos el contenedor de datos de salida
+    const outData = new OutData();
+
+    // Obtenemos los datos de la peticion
+    const categoria = plainToClass(Categoria, req.body);
+
+    // Creamos el usuario
+    const categoriaCreated = await create(categoria);
+
+    // Asignamos los datos de salida
+    outData.data = [categoriaCreated];
+    outData.metadata = {
+      totalCount: 1,
+      filterCount: 1,
+    };
+    
+    // Devolvemos el usuario creado
+    res.status(200).json(outData);
+  } catch (error) {
+    if (error instanceof Error) {
+      res
+        .status(500)
+        .json({ error: error.message, stack: error.stack, name: error.name });
+    }
+  }
+};
+
+export const updateCategoria = async (req: Request, res: Response) => {
+  try {
+    // Creamos el contenedor de datos de salida
+    const outData = new OutData();
+
+    // Obtenemos los datos de la peticion
+    const categoriaId = parseInt(req.params.id as string);
+    const categoria = plainToClass(Categoria, req.body);
+
+    // Actualizamos el usuario
+    const categoriaUpdated = await update(categoriaId, categoria);
+
+    // Asignamos los datos de salida
+    outData.data = [categoriaUpdated];
+    outData.metadata = {
+      totalCount: 1,
+      filterCount: 1,
+    };
+
+    // Devolvemos el usuario actualizado
+    res.status(200).json(outData);
+
+  } catch (error) {
+    if(error instanceof DBError){
+      res.status(404).json({ error: error.message, stack: error.stack, name: error.name });
+      return;
+    }
+
+    if (error instanceof Error) {
+      res
+        .status(500)
+        .json({ error: error.message, stack: error.stack, name: error.name });
+    }
+  }
+};
+
+export const deleteCategoria = async (req: Request, res: Response) => {
+  try {
+    // Obtenemos los datos de la peticion
+    const categoriaId = parseInt(req.params.id as string);
+
+    // Eliminamos el usuario
+    await remove(categoriaId);
+
+    res.status(200).send("Categoria eliminada");
+  } catch (error) {
+    if(error instanceof DBError){
+      res.status(404).json({ error: error.message, stack: error.stack, name: error.name });
+      return;
+    }
+
+    if (error instanceof Error) {
+      res
+        .status(500)
+        .json({ error: error.message, stack: error.stack, name: error.name });
+    }
+  }
+};
+
+

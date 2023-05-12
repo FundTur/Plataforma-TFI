@@ -1,6 +1,10 @@
 import { Request, Response } from "express";
-import { getAll, getById } from "../repository/ciudad.repository";
+import { plainToClass } from "class-transformer";
+import DBError from "../dto/errors/DbError";
+import { getAll, getById, create, update, remove } from "../repository/ciudad.repository";
 import OutData from "../dto/outDataDTO";
+import { Ciudad } from "../model/Ciudad";
+
 
 export const getAllCiudades = async (req: Request, res: Response) => {
   try {
@@ -69,3 +73,92 @@ export const getCiudad = async (req: Request, res: Response) => {
     }
   }
 };
+
+export const createCiudad = async (req: Request, res: Response) => {
+  try {
+    // Creamos el contenedor de datos de salida
+    const outData = new OutData();
+
+    // Obtenemos los datos de la peticion
+    const ciudad = plainToClass(Ciudad, req.body);
+
+    // Creamos el usuario
+    const ciudadCreated = await create(ciudad);
+
+    // Asignamos los datos de salida
+    outData.data = [ciudadCreated];
+    outData.metadata = {
+      totalCount: 1,
+      filterCount: 1,
+    };
+    
+    // Devolvemos el usuario creado
+    res.status(200).json(outData);
+  } catch (error) {
+    if (error instanceof Error) {
+      res
+        .status(500)
+        .json({ error: error.message, stack: error.stack, name: error.name });
+    }
+  }
+};
+
+export const updateCiudad = async (req: Request, res: Response) => {
+  try {
+    // Creamos el contenedor de datos de salida
+    const outData = new OutData();
+
+    // Obtenemos los datos de la peticion
+    const ciudadId = parseInt(req.params.id as string);
+    const ciudad = plainToClass(Ciudad, req.body);
+
+    // Actualizamos el usuario
+    const ciudadUpdated = await update(ciudadId, ciudad);
+
+    // Asignamos los datos de salida
+    outData.data = [ciudadUpdated];
+    outData.metadata = {
+      totalCount: 1,
+      filterCount: 1,
+    };
+
+    // Devolvemos el usuario actualizado
+    res.status(200).json(outData);
+
+  } catch (error) {
+    if(error instanceof DBError){
+      res.status(404).json({ error: error.message, stack: error.stack, name: error.name });
+      return;
+    }
+
+    if (error instanceof Error) {
+      res
+        .status(500)
+        .json({ error: error.message, stack: error.stack, name: error.name });
+    }
+  }
+};
+
+export const deleteCiudad = async (req: Request, res: Response) => {
+  try {
+    // Obtenemos los datos de la peticion
+    const ciudadId = parseInt(req.params.id as string);
+
+    // Eliminamos el usuario
+    await remove(ciudadId);
+
+    res.status(200).send("Ciudad eliminada");
+  } catch (error) {
+    if(error instanceof DBError){
+      res.status(404).json({ error: error.message, stack: error.stack, name: error.name });
+      return;
+    }
+
+    if (error instanceof Error) {
+      res
+        .status(500)
+        .json({ error: error.message, stack: error.stack, name: error.name });
+    }
+  }
+};
+
