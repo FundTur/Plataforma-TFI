@@ -1,6 +1,10 @@
 import { Request, Response } from "express";
-import { getAll, getById } from "../repository/plan.repository";
+import { plainToClass } from "class-transformer";
+import DBError from "../dto/errors/DbError";
+import { getAll, getById, create, update, remove } from "../repository/plan.repository";
 import OutData from "../dto/outDataDTO";
+import { Plan } from "../model/Plan";
+
 
 export const getAllPlanes = async (req: Request, res: Response) => {
   try {
@@ -69,3 +73,93 @@ export const getPlanes = async (req: Request, res: Response) => {
     }
   }
 };
+
+export const createPlan = async (req: Request, res: Response) => {
+  try {
+    // Creamos el contenedor de datos de salida
+    const outData = new OutData();
+
+    // Obtenemos los datos de la peticion
+    const plan = plainToClass(Plan, req.body);
+
+    // Creamos el usuario
+    const planCreated = await create(plan);
+
+    // Asignamos los datos de salida
+    outData.data = [planCreated];
+    outData.metadata = {
+      totalCount: 1,
+      filterCount: 1,
+    };
+    
+    // Devolvemos el usuario creado
+    res.status(200).json(outData);
+  } catch (error) {
+    if (error instanceof Error) {
+      res
+        .status(500)
+        .json({ error: error.message, stack: error.stack, name: error.name });
+    }
+  }
+};
+
+export const updatePlan = async (req: Request, res: Response) => {
+  try {
+    // Creamos el contenedor de datos de salida
+    const outData = new OutData();
+
+    // Obtenemos los datos de la peticion
+    const planId = parseInt(req.params.id as string);
+    const plan = plainToClass(Plan, req.body);
+
+    // Actualizamos el usuario
+    const planUpdated = await update(planId, plan);
+
+    // Asignamos los datos de salida
+    outData.data = [planUpdated];
+    outData.metadata = {
+      totalCount: 1,
+      filterCount: 1,
+    };
+
+    // Devolvemos el usuario actualizado
+    res.status(200).json(outData);
+
+  } catch (error) {
+    if(error instanceof DBError){
+      res.status(404).json({ error: error.message, stack: error.stack, name: error.name });
+      return;
+    }
+
+    if (error instanceof Error) {
+      res
+        .status(500)
+        .json({ error: error.message, stack: error.stack, name: error.name });
+    }
+  }
+};
+
+export const deletePlan = async (req: Request, res: Response) => {
+  try {
+    // Obtenemos los datos de la peticion
+    const planId = parseInt(req.params.id as string);
+
+    // Eliminamos el usuario
+    await remove(planId);
+
+    res.status(200).send("Plan eliminado");
+  } catch (error) {
+    if(error instanceof DBError){
+      res.status(404).json({ error: error.message, stack: error.stack, name: error.name });
+      return;
+    }
+
+    if (error instanceof Error) {
+      res
+        .status(500)
+        .json({ error: error.message, stack: error.stack, name: error.name });
+    }
+  }
+};
+
+

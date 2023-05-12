@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { plainToClass } from "class-transformer";
 import DBError from "../dto/errors/DbError";
-import { getAll, getById, create, update, delete } from "../repository/rol.repository";
+import { getAll, getById, create, update, remove } from "../repository/rol.repository";
 import OutData from "../dto/outDataDTO";
 import { Rol } from "../model/Rol";
 
@@ -140,3 +140,25 @@ export const updateRol = async (req: Request, res: Response) => {
   }
 };
 
+export const deleteRol = async (req: Request, res: Response) => {
+  try {
+    // Obtenemos los datos de la peticion
+    const rolId = parseInt(req.params.id as string);
+
+    // Eliminamos el usuario
+    await remove(rolId);
+
+    res.status(200).send("Rol eliminado");
+  } catch (error) {
+    if(error instanceof DBError){
+      res.status(404).json({ error: error.message, stack: error.stack, name: error.name });
+      return;
+    }
+
+    if (error instanceof Error) {
+      res
+        .status(500)
+        .json({ error: error.message, stack: error.stack, name: error.name });
+    }
+  }
+};
