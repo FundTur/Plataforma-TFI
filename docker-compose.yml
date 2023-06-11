@@ -4,7 +4,7 @@ services:
     container_name: mysql_db_container
     command: --explicit_defaults_for_timestamp=1
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost:3306"]
       interval: 10s
       timeout: 5s
       retries: 3
@@ -19,6 +19,7 @@ services:
     volumes:
       - ./db/data:/var/lib/mysql
       - ./db/mysql:/docker-entrypoint-initdb.d
+    restart: on-failure
 
   api:
     container_name: api_container
@@ -33,6 +34,7 @@ services:
     depends_on:
       mysql_db:
         condition: service_healthy
+    restart: on-failure
 
 volumes:
   data: {

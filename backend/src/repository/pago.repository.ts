@@ -3,51 +3,52 @@ import { AppSource } from "../db";
 
 // Consultas
 export async function getAll(
-  page: number,
-  limit: number
+    page: number,
+    limit: number
 ): Promise<[Pago[], number]> {
-  const query = AppSource.createQueryBuilder()
+    const query = AppSource.createQueryBuilder()
     .select("pago")
     .from(Pago, "pago");
 
-  if (limit != -1) {
-    query.skip((page - 1) * limit);
-    query.take(limit);
-  }
+    if (limit != -1) {
+        query.skip((page - 1) * limit);
+        query.take(limit);
+    }
 
-  return await query.getManyAndCount();
+    return await query.getManyAndCount();
 }
 
 export async function getById(id: number): Promise<Pago | null> {
-  return await Pago.findOneBy({
-    id: id,
-  });
+    return await Pago.findOneBy({
+        id: id,
+    });
 }
 
 // Mutaciones
 export async function create(pago: Pago): Promise<Pago> {
-  return await pago.save();
+    return await pago.save();
 }
 
 export async function update(id: number, pago: Pago): Promise<Pago> {
-  const pagoFind = await getById(id);
+    const pagoFind = await getById(id);
 
-  if (!pagoFind) {
-    throw new Error("Pago con id" + id + "no encontrado");
-  }
+    if (!pagoFind) {
+        throw new Error("Pago con id" + id + "no encontrado");
+    }
 
-  return await pago.save();
+    return await pago.save();
 }
 
 export async function remove(id: number): Promise<Pago | null> {
-  const pago = await getById(id);
+    // Traemos el pago por id
+    const pago = await getById(id);
 
-  // Si el usuario existe lo eliminamos
-  if (!pago) {
-      throw new Error("Pago no encontrado");
-  }
+    // Si el usuario existe lo eliminamos
+    if (!pago) {
+        throw new Error("Pago no encontrado");
+    }
 
-  return await pago.remove();
+    return await pago.remove();
 }
 
 // A6051
