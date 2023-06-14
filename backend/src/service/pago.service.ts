@@ -1,10 +1,15 @@
 import { Request, Response } from "express";
 import { plainToClass } from "class-transformer";
 import DBError from "../dto/errors/DbError";
-import { getAll, getById, create, update, remove } from "../repository/pago.repository";
+import {
+  getAll,
+  getById,
+  create,
+  update,
+  remove,
+} from "../repository/pago.repository";
 import OutData from "../dto/outDataDTO";
 import { Pago } from "../model/Pago";
-
 
 export const getAllPagos = async (req: Request, res: Response) => {
   try {
@@ -74,7 +79,6 @@ export const getPago = async (req: Request, res: Response) => {
   }
 };
 
-
 export const createPago = async (req: Request, res: Response) => {
   try {
     // Creamos el contenedor de datos de salida
@@ -92,7 +96,7 @@ export const createPago = async (req: Request, res: Response) => {
       totalCount: 1,
       filterCount: 1,
     };
-    
+
     // Devolvemos el usuario creado
     res.status(200).json(outData);
   } catch (error) {
@@ -125,10 +129,11 @@ export const updatePago = async (req: Request, res: Response) => {
 
     // Devolvemos el usuario actualizado
     res.status(200).json(outData);
-
   } catch (error) {
-    if(error instanceof DBError){
-      res.status(404).json({ error: error.message, stack: error.stack, name: error.name });
+    if (error instanceof DBError) {
+      res
+        .status(404)
+        .json({ error: error.message, stack: error.stack, name: error.name });
       return;
     }
 
@@ -150,8 +155,10 @@ export const deletePago = async (req: Request, res: Response) => {
 
     res.status(200).send("Pago eliminado");
   } catch (error) {
-    if(error instanceof DBError){
-      res.status(404).json({ error: error.message, stack: error.stack, name: error.name });
+    if (error instanceof DBError) {
+      res
+        .status(404)
+        .json({ error: error.message, stack: error.stack, name: error.name });
       return;
     }
 

@@ -44,7 +44,7 @@ export async function remove(id: number): Promise<Pais | null> {
 
   // Si el pais existe lo eliminamos
   if (!pais) {
-      throw new Error("Pais no encontrado");
+    throw new Error("Pais no encontrado");
   }
 
   return await pais.remove();

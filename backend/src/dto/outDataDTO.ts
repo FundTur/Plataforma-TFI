@@ -1,7 +1,7 @@
 export default class OutData {
-    data: any[];
-    metadata: {
-        totalCount: number;
-        filterCount: number;
-    }
+  data: any[];
+  metadata: {
+    totalCount: number;
+    filterCount: number;
+  };
 }

@@ -1,10 +1,15 @@
 import { Request, Response } from "express";
 import { plainToClass } from "class-transformer";
 import DBError from "../dto/errors/DbError";
-import { getAll, getById, create, update, remove } from "../repository/observacion.repository";
+import {
+  getAll,
+  getById,
+  create,
+  update,
+  remove,
+} from "../repository/observacion.repository";
 import OutData from "../dto/outDataDTO";
 import { Observacion } from "../model/Observacion";
-
 
 export const getAllObservaciones = async (req: Request, res: Response) => {
   try {
@@ -91,7 +96,7 @@ export const createObservacion = async (req: Request, res: Response) => {
       totalCount: 1,
       filterCount: 1,
     };
-    
+
     // Devolvemos el usuario creado
     res.status(200).json(outData);
   } catch (error) {
@@ -124,10 +129,11 @@ export const updateObservacion = async (req: Request, res: Response) => {
 
     // Devolvemos el usuario actualizado
     res.status(200).json(outData);
-
   } catch (error) {
-    if(error instanceof DBError){
-      res.status(404).json({ error: error.message, stack: error.stack, name: error.name });
+    if (error instanceof DBError) {
+      res
+        .status(404)
+        .json({ error: error.message, stack: error.stack, name: error.name });
       return;
     }
 
@@ -149,8 +155,10 @@ export const deleteObservacion = async (req: Request, res: Response) => {
 
     res.status(200).send("Observacion eliminada");
   } catch (error) {
-    if(error instanceof DBError){
-      res.status(404).json({ error: error.message, stack: error.stack, name: error.name });
+    if (error instanceof DBError) {
+      res
+        .status(404)
+        .json({ error: error.message, stack: error.stack, name: error.name });
       return;
     }
 
@@ -161,4 +169,3 @@ export const deleteObservacion = async (req: Request, res: Response) => {
     }
   }
 };
-

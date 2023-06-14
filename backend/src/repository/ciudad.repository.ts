@@ -44,9 +44,8 @@ export async function remove(id: number): Promise<Ciudad | null> {
 
   // Si la categoria existe lo eliminamos
   if (!ciudad) {
-      throw new Error("Ciudad no encontrada");
+    throw new Error("Ciudad no encontrada");
   }
 
   return await ciudad.remove();
 }
-

@@ -1,7 +1,13 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, BaseEntity } from 'typeorm';
-import { Convocatoria } from './Convocatoria';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  BaseEntity,
+} from "typeorm";
+import { Convocatoria } from "./Convocatoria";
 
-@Entity('beneficio')
+@Entity("beneficio")
 export class Beneficio extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;

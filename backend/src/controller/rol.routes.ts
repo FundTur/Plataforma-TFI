@@ -1,5 +1,11 @@
 import { Router } from "express";
-import { getAllRoles, getRol, createRol, updateRol, deleteRol } from "../service/rol.service";
+import {
+  getAllRoles,
+  getRol,
+  createRol,
+  updateRol,
+  deleteRol,
+} from "../service/rol.service";
 
 const router = Router();
 

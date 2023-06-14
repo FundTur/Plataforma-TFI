@@ -29,7 +29,10 @@ export async function create(categoria: Categoria): Promise<Categoria> {
   return await categoria.save();
 }
 
-export async function update(id: number, categoria: Categoria): Promise<Categoria> {
+export async function update(
+  id: number,
+  categoria: Categoria
+): Promise<Categoria> {
   const categoriaFind = await getById(id);
 
   if (!categoriaFind) {
@@ -44,9 +47,8 @@ export async function remove(id: number): Promise<Categoria | null> {
 
   // Si la categoria existe lo eliminamos
   if (!categoria) {
-      throw new Error("Categoría no encontrada");
+    throw new Error("Categoría no encontrada");
   }
 
   return await categoria.remove();
 }
-

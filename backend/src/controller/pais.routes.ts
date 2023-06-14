@@ -1,5 +1,11 @@
 import { Router } from "express";
-import { getAllPaises, getPais,createPais,updatePais,deletePais} from "../service/pais.service";
+import {
+  getAllPaises,
+  getPais,
+  createPais,
+  updatePais,
+  deletePais,
+} from "../service/pais.service";
 
 const router = Router();
 

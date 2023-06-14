@@ -29,7 +29,10 @@ export async function create(observacion: Observacion): Promise<Observacion> {
   return await observacion.save();
 }
 
-export async function update(id: number, observacion: Observacion): Promise<Observacion> {
+export async function update(
+  id: number,
+  observacion: Observacion
+): Promise<Observacion> {
   const observacionFind = await getById(id);
 
   if (!observacionFind) {
@@ -44,7 +47,7 @@ export async function remove(id: number): Promise<Observacion | null> {
 
   // Si el usuario existe lo eliminamos
   if (!observacion) {
-      throw new Error("Observación no encontrada");
+    throw new Error("Observación no encontrada");
   }
 
   return await observacion.remove();

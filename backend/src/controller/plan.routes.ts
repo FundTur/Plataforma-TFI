@@ -1,5 +1,11 @@
 import { Router } from "express";
-import { getAllPlanes, getPlanes,createPlan, updatePlan,deletePlan} from "../service/plan.service";
+import {
+  getAllPlanes,
+  getPlanes,
+  createPlan,
+  updatePlan,
+  deletePlan,
+} from "../service/plan.service";
 
 const router = Router();
 

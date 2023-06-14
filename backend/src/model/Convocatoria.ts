@@ -38,7 +38,7 @@ export class Convocatoria extends BaseEntity {
   valorFinanciamiento: number;
 
   @OneToMany(() => Beneficio, (beneficio) => beneficio.convocatoria)
-  beneficios: Beneficio[]; 
+  beneficios: Beneficio[];
 
   @ManyToMany(() => Usuario)
   @JoinTable()

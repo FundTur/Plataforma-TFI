@@ -44,7 +44,7 @@ export async function remove(id: number): Promise<Plan | null> {
 
   // Si el usuario existe lo eliminamos
   if (!plan) {
-      throw new Error("Plan no encontrado");
+    throw new Error("Plan no encontrado");
   }
 
   return await plan.remove();

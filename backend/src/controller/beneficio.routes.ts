@@ -1,5 +1,11 @@
 import { Router } from "express";
-import { getAllBeneficios, getBeneficio, createBeneficio, updateBeneficio, deleteBeneficio } from "../service/beneficio.service";
+import {
+  getAllBeneficios,
+  getBeneficio,
+  createBeneficio,
+  updateBeneficio,
+  deleteBeneficio,
+} from "../service/beneficio.service";
 
 const router = Router();
 

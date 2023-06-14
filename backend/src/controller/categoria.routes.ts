@@ -1,5 +1,11 @@
 import { Router } from "express";
-import { getAllCategorias, getCategoria, createCategoria, updateCategoria, deleteCategoria } from "../service/categoria.service";
+import {
+  getAllCategorias,
+  getCategoria,
+  createCategoria,
+  updateCategoria,
+  deleteCategoria,
+} from "../service/categoria.service";
 
 const router = Router();
 

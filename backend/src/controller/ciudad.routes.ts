@@ -1,5 +1,11 @@
 import { Router } from "express";
-import { getAllCiudades, getCiudad, createCiudad,updateCiudad,deleteCiudad } from "../service/ciudad.service";
+import {
+  getAllCiudades,
+  getCiudad,
+  createCiudad,
+  updateCiudad,
+  deleteCiudad,
+} from "../service/ciudad.service";
 
 const router = Router();
 

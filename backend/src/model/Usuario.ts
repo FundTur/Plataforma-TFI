@@ -30,16 +30,15 @@ export class Usuario extends BaseEntity {
   @Column()
   password: string;
 
-  
   @Column()
   estado: string;
-  
+
   @Column()
   telefono: string;
-  
+
   @Column()
   estadoPlan: string;
-  
+
   // Meta datos de la tabla
   @UpdateDateColumn()
   dateUpdated: Date;

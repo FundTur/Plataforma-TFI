@@ -2,7 +2,13 @@ import { Request, Response } from "express";
 import { plainToClass } from "class-transformer";
 import DBError from "../dto/errors/DbError";
 
-import { getAll, getById, create, remove, update } from "../repository/user.repository";
+import {
+  getAll,
+  getById,
+  create,
+  remove,
+  update,
+} from "../repository/user.repository";
 import OutData from "../dto/outDataDTO";
 import { Usuario } from "../model/Usuario";
 
@@ -66,11 +72,13 @@ export const getUser = async (req: Request, res: Response) => {
 
     res.status(200).json(outData);
   } catch (error) {
-    if(error instanceof DBError){
-      res.status(404).json({ error: error.message, stack: error.stack, name: error.name });
+    if (error instanceof DBError) {
+      res
+        .status(404)
+        .json({ error: error.message, stack: error.stack, name: error.name });
       return;
     }
-    
+
     if (error instanceof Error) {
       res
         .status(500)
@@ -96,7 +104,7 @@ export const createUser = async (req: Request, res: Response) => {
       totalCount: 1,
       filterCount: 1,
     };
-    
+
     // Devolvemos el usuario creado
     res.status(200).json(outData);
   } catch (error) {
@@ -129,10 +137,11 @@ export const updateUser = async (req: Request, res: Response) => {
 
     // Devolvemos el usuario actualizado
     res.status(200).json(outData);
-
   } catch (error) {
-    if(error instanceof DBError){
-      res.status(404).json({ error: error.message, stack: error.stack, name: error.name });
+    if (error instanceof DBError) {
+      res
+        .status(404)
+        .json({ error: error.message, stack: error.stack, name: error.name });
       return;
     }
 
@@ -154,8 +163,10 @@ export const deleteUser = async (req: Request, res: Response) => {
 
     res.status(200).send("Usuario eliminado");
   } catch (error) {
-    if(error instanceof DBError){
-      res.status(404).json({ error: error.message, stack: error.stack, name: error.name });
+    if (error instanceof DBError) {
+      res
+        .status(404)
+        .json({ error: error.message, stack: error.stack, name: error.name });
       return;
     }
 
@@ -165,4 +176,4 @@ export const deleteUser = async (req: Request, res: Response) => {
         .json({ error: error.message, stack: error.stack, name: error.name });
     }
   }
-}
+};

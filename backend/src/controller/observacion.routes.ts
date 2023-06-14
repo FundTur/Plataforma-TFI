@@ -1,5 +1,11 @@
 import { Router } from "express";
-import { getAllObservaciones, getObservacion, createObservacion, updateObservacion,deleteObservacion } from "../service/observacion.service";
+import {
+  getAllObservaciones,
+  getObservacion,
+  createObservacion,
+  updateObservacion,
+  deleteObservacion,
+} from "../service/observacion.service";
 
 const router = Router();
 

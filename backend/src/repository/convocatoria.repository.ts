@@ -25,11 +25,16 @@ export async function getById(id: number): Promise<Convocatoria | null> {
 }
 
 // Mutaciones
-export async function create(convocatoria: Convocatoria): Promise<Convocatoria> {
+export async function create(
+  convocatoria: Convocatoria
+): Promise<Convocatoria> {
   return await convocatoria.save();
 }
 
-export async function update(id: number, convocatoria: Convocatoria): Promise<Convocatoria> {
+export async function update(
+  id: number,
+  convocatoria: Convocatoria
+): Promise<Convocatoria> {
   const convocatoriaFind = await getById(id);
 
   if (!convocatoriaFind) {
@@ -44,7 +49,7 @@ export async function remove(id: number): Promise<Convocatoria | null> {
 
   // Si el usuario existe lo eliminamos
   if (!convocatoria) {
-      throw new Error("Convocatoria no encontrada");
+    throw new Error("Convocatoria no encontrada");
   }
 
   return await convocatoria.remove();

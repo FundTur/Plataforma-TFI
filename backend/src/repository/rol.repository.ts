@@ -6,9 +6,7 @@ export async function getAll(
   page: number,
   limit: number
 ): Promise<[Rol[], number]> {
-  const query = AppSource.createQueryBuilder()
-    .select("rol")
-    .from(Rol, "rol");
+  const query = AppSource.createQueryBuilder().select("rol").from(Rol, "rol");
 
   if (limit != -1) {
     query.skip((page - 1) * limit);
@@ -44,7 +42,7 @@ export async function remove(id: number): Promise<Rol | null> {
 
   // Si el usuario existe lo eliminamos
   if (!rol) {
-      throw new Error("Rol no encontrado");
+    throw new Error("Rol no encontrado");
   }
 
   return await rol.remove();

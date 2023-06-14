@@ -1,5 +1,11 @@
 import { Router } from "express";
-import { getAllPagos, getPago,createPago,updatePago, deletePago} from "../service/pago.service";
+import {
+  getAllPagos,
+  getPago,
+  createPago,
+  updatePago,
+  deletePago,
+} from "../service/pago.service";
 
 const router = Router();
 

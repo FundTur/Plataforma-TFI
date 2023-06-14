@@ -23,6 +23,6 @@ export class Pago extends BaseEntity {
   @ManyToOne(() => Usuario, (usuario) => usuario.pagos)
   usuario: Usuario;
 
-  @ManyToOne(() => Plan, (plan) => plan.pagos) 
+  @ManyToOne(() => Plan, (plan) => plan.pagos)
   plan: Plan;
 }

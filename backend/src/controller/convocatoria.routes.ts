@@ -1,5 +1,11 @@
 import { Router } from "express";
-import { getAllConvocatorias, getConvocatorias,createConvocatorias, updateConvocatorias, deleteConvocatorias } from "../service/convocatoria.service";
+import {
+  getAllConvocatorias,
+  getConvocatorias,
+  createConvocatorias,
+  updateConvocatorias,
+  deleteConvocatorias,
+} from "../service/convocatoria.service";
 
 const router = Router();
 

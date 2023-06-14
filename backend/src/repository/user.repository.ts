@@ -20,8 +20,8 @@ export async function getAll(
 }
 
 export async function getById(id: number): Promise<Usuario | null> {
-  const userFind = await Usuario.findOneBy({id: id})
-  
+  const userFind = await Usuario.findOneBy({ id: id });
+
   if (!userFind) {
     throw new DBError("Usuario no encontrado");
   }
@@ -52,7 +52,7 @@ export async function remove(id: number): Promise<Usuario | null> {
 
   // Si el usuario existe lo eliminamos
   if (!usuario) {
-      throw new DBError("Usuario no encontrado");
+    throw new DBError("Usuario no encontrado");
   }
 
   return await usuario.remove();
