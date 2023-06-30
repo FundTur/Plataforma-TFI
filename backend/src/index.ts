@@ -8,8 +8,8 @@ async function main() {
     await AppSource.initialize();
 
     // Start the server
-    app.listen(3000, () => {
-      console.log("Server running in http://localhost:3000");
+    app.listen(process.env.PORT, () => {
+      console.log(`Server running in http://localhost:${process.env.PORT}`);
     });
   } catch (err) {
     console.log(err);
