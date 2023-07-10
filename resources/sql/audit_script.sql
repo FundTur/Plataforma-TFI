@@ -1,6 +1,6 @@
 -- auditoria.auditorias definition
 
-CREATE TABLE `auditorias` (
+CREATE TABLE `auditoria` (
   `id_auditoria` int NOT NULL AUTO_INCREMENT,
   `id_evento` int NOT NULL,
   `evento_tipo` varchar(150) NOT NULL,
@@ -17,7 +17,7 @@ CREATE TABLE `auditorias` (
 
 -- auditoria.eventos definition
 
-CREATE TABLE `eventos` (
+CREATE TABLE `evento` (
   `id_evento` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id_evento`)
