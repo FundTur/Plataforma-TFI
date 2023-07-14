@@ -151,3 +151,35 @@ CREATE TABLE `pago` (
   CONSTRAINT `FK_931ebb93af7144f3a1ef90662ad` FOREIGN KEY (`usuarioId`) REFERENCES `usuario` (`id`),
   CONSTRAINT `FK_fb83326a4a3705bdd4678ca202c` FOREIGN KEY (`planId`) REFERENCES `plan` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- auditoria.auditorias definition
+
+CREATE TABLE `auditoria` (
+  `id_auditoria` int NOT NULL AUTO_INCREMENT,
+  `id_evento` int NOT NULL,
+  `evento_tipo` varchar(150) NOT NULL,
+  `detalle` varchar(255) NOT NULL,
+  `ip` varchar(50) NOT NULL,
+  `correo_usuario` varchar(255) NOT NULL,
+  `fecha_creacion` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+  KEY `FK_eventos` (`id_evento`),
+  CONSTRAINT `FK_eventos` FOREIGN KEY (`id_evento`) REFERENCES `eventos` (`id_evento`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+-- auditoria.eventos definition
+
+CREATE TABLE `evento` (
+  `id_evento` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) NOT NULL,
+  PRIMARY KEY (`id_evento`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- auditoria.eventos definition
+
+CREATE TABLE `imagen` (
+  `uuid_imagen` int NOT NULL AUTO_INCREMENT,
+  `nombre_imagen` varchar(255) NOT NULL,
+  PRIMARY KEY (`uuid_imagen`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

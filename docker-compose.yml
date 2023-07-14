@@ -37,7 +37,7 @@ services:
     restart: on-failure
   
   mysql_db_audit:
-    container_name: mysql_db_audit
+    container_name: mysql_db_juls
     command: --explicit_defaults_for_timestamp=1
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost:3306"]
@@ -46,8 +46,8 @@ services:
       retries: 3
     build: ./db
     environment:
-      MYSQL_ROOT_PASSWORD: auditable
-      MYSQL_DATABASE: auditoria
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: development
       MYSQL_USER: tfi_user
       MYSQL_PASSWORD: tfi_password
     ports:

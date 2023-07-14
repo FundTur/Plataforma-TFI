@@ -11,6 +11,9 @@ RUN npm ci
 # Copiamos el resto de los archivos
 COPY ./src ./src
 
+#JEJE PRUEBAS
+#COPY generated_juls.sql /docker-entrypoint-initdb.d/
+
 # Build the app
 RUN npm run build
 
@@ -19,3 +22,4 @@ EXPOSE 3000
 
 # Corremos el servidor
 CMD [ "npm", "run", "dev" ]
+
