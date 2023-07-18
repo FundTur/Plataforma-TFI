@@ -71,7 +71,9 @@ CREATE TABLE `convocatoria` (
   PRIMARY KEY (`id`),
   KEY `FK_ab04f36cadd0c4414f77d7250e9` (`paisId`),
   KEY `FK_ccaefe5b83741e0ccd3baad09c7` (`categoriaId`),
+  KEY `FK_ccaefe5b83741e0ccsdhfshfgs4` (`imagen`),
   CONSTRAINT `FK_ab04f36cadd0c4414f77d7250e9` FOREIGN KEY (`paisId`) REFERENCES `pais` (`id`),
+  CONSTRAINT `FK_ab04f36cadd0c4414f772342345` FOREIGN KEY (`imagen`) REFERENCES `imagen` (`uuid_imagen`),
   CONSTRAINT `FK_ccaefe5b83741e0ccd3baad09c7` FOREIGN KEY (`categoriaId`) REFERENCES `categoria` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 

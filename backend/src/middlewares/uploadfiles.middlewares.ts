@@ -7,10 +7,10 @@ import path from "path";
 const storage = multer.diskStorage({
 
     destination: path.join(__dirname, "../public/uploads"),
-    filename: function(req: Request, file: Express.Multer.File, cb: (error: Error | null, destination: string) => void
+    filename: function(req: Request, file: Express.Multer.File, callback: (error: Error | null, destination: string) => void
     ){
         const uuid = crypto.randomUUID();
-        cb(null, uuid + file.originalname.substring(file.originalname.lastIndexOf(".")));
+        callback(null, uuid + file.originalname.substring(file.originalname.lastIndexOf(".")));
 }});
 
 const fileFilter = (req: Request, file: Express.Multer.File, cb: FileFilterCallback) => {
@@ -23,7 +23,8 @@ const fileFilter = (req: Request, file: Express.Multer.File, cb: FileFilterCallb
 
 };
 
-const maxSize = 10000000;
+const maxSize = process.env.MAXSIZE;
+//const maxSize = 10000000; enviado al .env
 export const upload = (req: Request, res: Response, next: NextFunction) => {
     return multer({
         storage,
