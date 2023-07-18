@@ -15,13 +15,12 @@ export async function getAll(
     query.take(limit);
   }
 
-  return await query.getManyAndCount(); //trae array de objeto del tipo beneficio + cantidad de registros en total
-} //usamos la palabra clave "await" para esperar a que la promesa se resuelva
-//antes de devolver el resultado de la función "getAll".
+  return await query.getManyAndCount(); 
+} 
 
 export async function getById(id: number): Promise<Evento | null> {
   return await Evento.findOneBy({
-    id_evento: id, //trae registro del tipo de beneficio por id
+    id_evento: id,
   });
 }
 
@@ -45,7 +44,7 @@ export async function update(
 export async function remove(id_evento: number): Promise<Evento | null> {
   const evento = await getById(id_evento);
 
-  // Si el usuario existe lo eliminamos
+ 
   if (!evento) {
     throw new Error("Evento con id" + id_evento + "no encontrado");
   }
@@ -53,5 +52,4 @@ export async function remove(id_evento: number): Promise<Evento | null> {
   return await evento.remove();
 }
 
-// Crear rama con contenido de otra rama comando de git
-// git checkout -b <nombre de la nueva rama> <rama de la que se copia el contenido>
+

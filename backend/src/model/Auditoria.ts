@@ -7,16 +7,17 @@ import {
     ManyToMany,
     JoinTable,
     BaseEntity,
+    OneToOne,
   } from "typeorm";
- 
+  import { Evento } from "./Evento";
   
   @Entity("auditoria")
   export class Auditoria extends BaseEntity {
     @PrimaryGeneratedColumn()
     id_auditoria: number;
   
-    @Column()
-    id_evento: number;
+    @OneToOne(() => Evento, (evento) => evento.auditoria)
+    id_evento: Evento;
   
     @Column()
     evento_tipo: string;
@@ -32,7 +33,8 @@ import {
 
     @Column()
     fecha_creacion: Date;
-  
+    
+    
   }
 
   //pendientes relaciones a evento / imagen si la hay

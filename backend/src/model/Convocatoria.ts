@@ -13,6 +13,7 @@ import { Beneficio } from "./Beneficio";
 import { Usuario } from "./Usuario";
 import { Categoria } from "./Categoria";
 import { Observacion } from "./Observacion";
+import { Imagen } from "./Imagen";
 
 @Entity("convocatoria")
 export class Convocatoria extends BaseEntity {
@@ -22,8 +23,8 @@ export class Convocatoria extends BaseEntity {
   @Column()
   nombre: string;
 
-  @Column()
-  imagen: string;
+  @ManyToOne(() => Imagen, (imagen) => imagen.convocatorias)
+  imagen: Imagen;
 
   @Column()
   descripcion: string;

@@ -7,7 +7,9 @@ import {
     ManyToMany,
     JoinTable,
     BaseEntity,
+    OneToOne,
   } from "typeorm";
+  import { Auditoria } from "./Auditoria";
  
   
   @Entity("evento")
@@ -17,8 +19,11 @@ import {
   
     @Column()
     nombre: string;
+
+    @OneToOne(() => Auditoria, (auditoria) => auditoria.id_evento)
+    id_auditoria: Auditoria;
   
   }
 
-  //pendientes relaciones a auditoria / imagen si la hay
+ 
   

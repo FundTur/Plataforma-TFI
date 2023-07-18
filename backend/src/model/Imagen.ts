@@ -8,6 +8,7 @@ import {
     JoinTable,
     BaseEntity,
   } from "typeorm";
+import { Convocatoria } from "./Convocatoria";
  
   
   @Entity("imagen")
@@ -17,6 +18,10 @@ import {
   
     @Column()
     nombre_imagen: string;
+
+    @OneToMany(() => Convocatoria, (convocatoria) => convocatoria.imagen)
+    convocatorias: Convocatoria[];
+
   
   }
 

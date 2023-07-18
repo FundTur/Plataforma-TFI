@@ -15,13 +15,12 @@ export async function getAll(
     query.take(limit);
   }
 
-  return await query.getManyAndCount(); //trae array de objeto del tipo beneficio + cantidad de registros en total
-} //usamos la palabra clave "await" para esperar a que la promesa se resuelva
-//antes de devolver el resultado de la función "getAll".
+  return await query.getManyAndCount(); 
+ }
 
 export async function getById(id: number): Promise<Imagen | null> {
   return await Imagen.findOneBy({
-    uuid_imagen: id, //trae registro del tipo de beneficio por id
+    uuid_imagen: id, 
   });
 }
 
@@ -45,7 +44,7 @@ export async function update(
 export async function remove(uuid_imagen: number): Promise<Imagen | null> {
   const imagen = await getById(uuid_imagen);
 
-  // Si el usuario existe lo eliminamos
+
   if (!imagen) {
     throw new Error("Imagen con id" + uuid_imagen + "no encontrado");
   }
@@ -53,5 +52,6 @@ export async function remove(uuid_imagen: number): Promise<Imagen | null> {
   return await imagen.remove();
 }
 
+
 // Crear rama con contenido de otra rama comando de git
-// git checkout -b <nombre de la nueva rama> <rama de la que se copia el contenido>
+// git checkout -b <nombre de la nueva rama> <rama de la que se copia el contenido
