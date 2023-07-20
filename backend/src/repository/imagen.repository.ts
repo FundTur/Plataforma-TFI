@@ -20,7 +20,7 @@ export async function getAll(
 
 export async function getById(id: number): Promise<Imagen | null> {
   return await Imagen.findOneBy({
-    uuid_imagen: id, 
+    id: id, 
   });
 }
 

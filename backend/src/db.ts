@@ -11,6 +11,9 @@ import { Pais } from "./model/Pais";
 import { Plan } from "./model/Plan";
 import { Rol } from "./model/Rol";
 import { Usuario } from "./model/Usuario";
+import { Auditoria } from "./model/Auditoria";
+import { Evento } from "./model/Evento";
+import { Imagen } from "./model/Imagen";
 //End entities
 
 // Dotenv configuration
@@ -34,6 +37,9 @@ export const AppSource = new DataSource({
     Plan,
     Rol,
     Usuario,
+    Auditoria,
+    Evento,
+    Imagen
   ],
   synchronize: true,
   logging: true,

@@ -4,7 +4,7 @@ services:
     container_name: mysql_db_container
     command: --explicit_defaults_for_timestamp=1
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost:3306"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
       timeout: 5s
       retries: 3
