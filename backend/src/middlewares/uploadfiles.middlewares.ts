@@ -28,7 +28,7 @@ const maxSize = process.env.MAXSIZE;
 export const upload = (req: Request, res: Response, next: NextFunction) => {
     return multer({
         storage,
-        limits: {fileSize: maxSize},
+        limits: {fileSize: Number(maxSize)},
         fileFilter,
     }).single("document")(req, res, (err) => {
         

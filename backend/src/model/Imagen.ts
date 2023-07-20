@@ -3,9 +3,6 @@ import {
     PrimaryGeneratedColumn,
     Column,
     OneToMany,
-    ManyToOne,
-    ManyToMany,
-    JoinTable,
     BaseEntity,
   } from "typeorm";
 import { Convocatoria } from "./Convocatoria";
@@ -21,8 +18,4 @@ import { Convocatoria } from "./Convocatoria";
 
     @OneToMany(() => Convocatoria, (convocatoria) => convocatoria.imagen)
     convocatorias: Convocatoria[];
-
-  
   }
-
-  //pendientes relaciones a auditoria / imagen si la hay

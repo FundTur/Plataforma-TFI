@@ -2,10 +2,6 @@ import {
     Entity,
     PrimaryGeneratedColumn,
     Column,
-    OneToMany,
-    ManyToOne,
-    ManyToMany,
-    JoinTable,
     BaseEntity,
     OneToOne,
   } from "typeorm";
@@ -20,10 +16,6 @@ import {
     @Column()
     nombre: string;
 
-    @OneToOne(() => Auditoria, (auditoria) => auditoria.id_evento)
-    id_auditoria: Auditoria;
-  
-  }
-
- 
-  
+    @OneToOne(() => Auditoria, (auditoria) => auditoria.evento)
+    auditoria: Auditoria;
+  } 

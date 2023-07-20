@@ -1,4 +1,6 @@
 import { Request, Response } from "express";
+import UploadExcelData from "../dto/interfaces/UploadExcelFileData";
+
 var XLSX = require("xlsx");
 import path from "path";
 export const uploadPost = (req: Request, res: Response) =>{
@@ -15,7 +17,7 @@ export const uploadPost = (req: Request, res: Response) =>{
             );
             var idsheet = excel.SheetNames;
             let datos = XLSX.utils.sheets_to_json(excel.Sheets[idsheet[0]]); //TENGO QUE CORREGIR ESA D 
-            const datosformat = datos.map((d)=>{
+            const datosformat = datos.map((d: UploadExcelData)=>{
                 return({
                     'id':d.id,
                     'nombre':d.nombre,
@@ -35,7 +37,6 @@ export const uploadPost = (req: Request, res: Response) =>{
                     'fechaFin':new Date((d.fecha -(25567+ 2))*86400*1000), 
                     'estado': d.estado,
                     'isPremium': d.isPremium,
-  
                 })
             });
             console.log(datos);

@@ -2,10 +2,6 @@ import {
     Entity,
     PrimaryGeneratedColumn,
     Column,
-    OneToMany,
-    ManyToOne,
-    ManyToMany,
-    JoinTable,
     BaseEntity,
     OneToOne,
   } from "typeorm";
@@ -17,7 +13,7 @@ import {
     id_auditoria: number;
   
     @OneToOne(() => Evento, (evento) => evento.auditoria)
-    id_evento: Evento;
+    evento: Evento;
   
     @Column()
     evento_tipo: string;
@@ -33,8 +29,6 @@ import {
 
     @Column()
     fecha_creacion: Date;
-    
-    
   }
 
   //pendientes relaciones a evento / imagen si la hay
