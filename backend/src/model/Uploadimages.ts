@@ -1,6 +1,6 @@
 import express, { Application } from 'express';
 import cors from 'cors';
-import routerUpload from '../controller/uploadfiles.routes';
+import routerUpload from '../controller/uploadimages.routes';
 //definimos una clase y la exportamos por default
 class Server{
 

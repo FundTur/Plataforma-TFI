@@ -14,7 +14,7 @@ const storage = multer.diskStorage({
 }});
 
 const fileFilter = (req: Request, file: Express.Multer.File, callback: FileFilterCallback) => {
-    const fileTypes = ["document/xlsx", "document/xlsm", "document/xlsb", "image/xltx"];
+    const fileTypes = ["image/png", "image/jpg", "image/jpeg"];
 
     if(fileTypes.some((fileType) => fileType === file.mimetype)){
         return callback(null,true)
@@ -23,19 +23,19 @@ const fileFilter = (req: Request, file: Express.Multer.File, callback: FileFilte
 
 };
 
-const maxSize = process.env.MAXSIZE;
-//const maxSize = 10000000; enviado al .env
+const maxSize = process.env.MAXSIZE; //originalmente es tamaño * ancho * alto
+// se manejaria con respecto a la tabla resoluciones 
 export const upload = (req: Request, res: Response, next: NextFunction) => {
     return multer({
         storage,
         limits: {fileSize: Number(maxSize)},
         fileFilter,
-    }).single("document")(req, res, (err) => {
+    }).single("image")(req, res, (err) => {
         
         if(err instanceof multer.MulterError)
         {
             return res.status(400).json({
-                message: "Max file size 1GB allowed!"
+                message: "Max image size 1GB allowed!"
             });
         };
 
@@ -43,7 +43,7 @@ export const upload = (req: Request, res: Response, next: NextFunction) => {
 
         if(!req.file){
             res.status(400).json({
-                message: "No file has been uploaded, remember that u can only upload xlsx, xlsm, xlsb, xltx types!"
+                message: "No image has been uploaded, remember that u can only upload jpg, png, jpeg types!"
             })
         }
 
