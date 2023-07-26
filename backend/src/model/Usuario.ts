@@ -12,6 +12,8 @@ import {
 import { Pago } from "./Pago";
 import { Rol } from "./Rol";
 import { Pais } from "./Pais";
+import { Notificacion } from "./Notificacion";
+
 
 @Entity("usuario")
 export class Usuario extends BaseEntity {
@@ -56,4 +58,7 @@ export class Usuario extends BaseEntity {
 
   @ManyToOne(() => Pais, (pais) => pais.usuarios)
   pais: Pais;
+
+  @ManyToMany(() => Notificacion, (notificacion) => notificacion.usuario)
+  notificacion: Notificacion[];
 }

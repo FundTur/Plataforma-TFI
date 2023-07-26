@@ -4,8 +4,11 @@ import {
     Column,
     BaseEntity,
     OneToOne,
+    OneToMany
   } from "typeorm";
   import { Evento } from "./Evento";
+  import { Notificacion } from "./Notificacion";
+  
   
   @Entity("auditoria")
   export class Auditoria extends BaseEntity {
@@ -29,6 +32,9 @@ import {
 
     @Column()
     fecha_creacion: Date;
+
+    @OneToMany(() => Notificacion, (notificacion) => notificacion.auditoria)
+    notificacion: Notificacion[];
   }
 
   //pendientes relaciones a evento / imagen si la hay
