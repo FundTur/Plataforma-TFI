@@ -154,7 +154,7 @@ CREATE TABLE `pago` (
   CONSTRAINT `FK_fb83326a4a3705bdd4678ca202c` FOREIGN KEY (`planId`) REFERENCES `plan` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- auditoria.auditorias definition
+-- development.auditoria definition
 
 CREATE TABLE `auditoria` (
   `id_auditoria` int NOT NULL AUTO_INCREMENT,
@@ -170,7 +170,7 @@ CREATE TABLE `auditoria` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
--- auditoria.eventos definition
+-- development.evento definition
 
 CREATE TABLE `evento` (
   `id_evento` int NOT NULL AUTO_INCREMENT,
@@ -178,10 +178,54 @@ CREATE TABLE `evento` (
   PRIMARY KEY (`id_evento`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- auditoria.eventos definition
+-- development.imagen definition
 
 CREATE TABLE `imagen` (
   `uuid_imagen` int NOT NULL AUTO_INCREMENT,
   `nombre_imagen` varchar(255) NOT NULL,
-  PRIMARY KEY (`uuid_imagen`)
+  `archivos` int NOT NULL,
+  `resoluciones` int NOT NULL,
+  PRIMARY KEY (`uuid_imagen`),
+  KEY `FK_archivo` (`archivos`),
+  KEY `FK_resoluciones` (`resoluciones`),
+  CONSTRAINT `FK_archivo` FOREIGN KEY (`archivos`) REFERENCES `archivo` (`id`),
+  CONSTRAINT `FK_resoluciones` FOREIGN KEY (`resoluciones`) REFERENCES `resoluciones` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- development.archivo definition
+
+CREATE TABLE `archivo` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `categoria` varchar(255) NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- development.archivo definition
+
+CREATE TABLE `imagen_resolucion` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nombre_archivo` varchar(255) NOT NULL,
+  `alto` int  NOT NULL,
+  `ancho` int  NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- development.notificacion definition
+
+CREATE TABLE `notificacion` (
+  `id_notificacion` int NOT NULL AUTO_INCREMENT,
+  `id_evento` int NOT NULL,
+  `id_auditoria` int NOT NULL,
+  `titulo` varchar(255) NOT NULL,
+  `descripcion` varchar(255) NOT NULL,
+  `usuario_email` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_evento_notificacion` (`id_evento`),
+  KEY `FK_auditoria_notificacion` (`id_auditoria`),
+  KEY `FK_usuario_email` (`usuario_email`),
+  CONSTRAINT `FK_evento_notificacion` FOREIGN KEY (`id_evento`) REFERENCES `evento` (`id_evento`),
+  CONSTRAINT `FK_auditoria_notificacion` FOREIGN KEY (`id_auditoria`) REFERENCES `auditoria` (`id_auditoria`),
+  CONSTRAINT `FK_usuario_email` FOREIGN KEY (`usuario_email`) REFERENCES `usuario` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
