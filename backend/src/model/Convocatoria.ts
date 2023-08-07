@@ -6,23 +6,25 @@ import {
   ManyToOne,
   ManyToMany,
   JoinTable,
+  BaseEntity,
 } from "typeorm";
 import { Pais } from "./Pais";
 import { Beneficio } from "./Beneficio";
 import { Usuario } from "./Usuario";
 import { Categoria } from "./Categoria";
 import { Observacion } from "./Observacion";
+import { Imagen } from "./Imagen";
 
 @Entity("convocatoria")
-export class Convocatoria {
+export class Convocatoria extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
   nombre: string;
 
-  @Column()
-  imagen: string;
+  @ManyToOne(() => Imagen, (imagen) => imagen.convocatorias)
+  imagen: Imagen;
 
   @Column()
   descripcion: string;
@@ -37,7 +39,7 @@ export class Convocatoria {
   valorFinanciamiento: number;
 
   @OneToMany(() => Beneficio, (beneficio) => beneficio.convocatoria)
-  beneficios: Beneficio[]; 
+  beneficios: Beneficio[];
 
   @ManyToMany(() => Usuario)
   @JoinTable()

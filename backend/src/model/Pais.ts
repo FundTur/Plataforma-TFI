@@ -2,16 +2,15 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
-  ManyToMany,
-  ManyToOne,
   OneToMany,
+  BaseEntity,
 } from "typeorm";
 import { Convocatoria } from "./Convocatoria";
 import { Ciudad } from "./Ciudad";
 import { Usuario } from "./Usuario";
 
 @Entity("pais")
-export class Pais {
+export class Pais extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 

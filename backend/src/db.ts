@@ -1,17 +1,27 @@
 import { DataSource } from "typeorm";
 
 //Begin entities
-  import { Beneficio } from "./model/Beneficio";
-  import { Categoria } from "./model/Categoria";
-  import { Ciudad } from "./model/Ciudad";
-  import { Convocatoria } from "./model/Convocatoria";
-  import { Observacion } from "./model/Observacion";
-  import { Pago } from "./model/Pago";
-  import { Pais } from "./model/Pais";
-  import { Plan } from "./model/Plan";
-  import { Rol } from "./model/Rol";
-  import { Usuario } from "./model/Usuario";
+import { Beneficio } from "./model/Beneficio";
+import { Categoria } from "./model/Categoria";
+import { Ciudad } from "./model/Ciudad";
+import { Convocatoria } from "./model/Convocatoria";
+import { Observacion } from "./model/Observacion";
+import { Pago } from "./model/Pago";
+import { Pais } from "./model/Pais";
+import { Plan } from "./model/Plan";
+import { Rol } from "./model/Rol";
+import { Usuario } from "./model/Usuario";
+import { Auditoria } from "./model/Auditoria";
+import { Evento } from "./model/Evento";
+import { Imagen } from "./model/Imagen";
+import { Archivo } from "./model/Archivo";
+import { Resolucion } from "./model/Resolucion";
+import { Notificacion } from "./model/Notificacion";
+
 //End entities
+
+// Dotenv configuration
+require("dotenv").config();
 
 export const AppSource = new DataSource({
   type: "mysql",
@@ -30,7 +40,13 @@ export const AppSource = new DataSource({
     Pais,
     Plan,
     Rol,
-    Usuario
+    Usuario,
+    Auditoria,
+    Evento,
+    Imagen,
+    Archivo,
+    Resolucion,
+    Notificacion
   ],
   synchronize: true,
   logging: true,

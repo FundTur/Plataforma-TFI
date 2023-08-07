@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 services:
   mysql_db:
     container_name: mysql_db_container
@@ -19,6 +19,7 @@ services:
     volumes:
       - ./db/data:/var/lib/mysql
       - ./db/mysql:/docker-entrypoint-initdb.d
+    restart: on-failure
 
   api:
     container_name: api_container
@@ -28,11 +29,12 @@ services:
       MYSQL_DATABASE: development
       MYSQL_USER: tfi_user
       MYSQL_PASSWORD: tfi_password
+    ports:
+      - "3000:3000"
     depends_on:
       mysql_db:
         condition: service_healthy
+    restart: on-failure
 
 volumes:
-  data: {
-    driver: local
-  }
+  data: { driver: local }

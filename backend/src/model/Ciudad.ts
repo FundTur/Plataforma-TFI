@@ -1,8 +1,15 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne } from "typeorm"; 
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToMany,
+  ManyToOne,
+  BaseEntity,
+} from "typeorm";
 import { Pais } from "./Pais";
 
 @Entity("ciudad")
-export class Ciudad {
+export class Ciudad extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 

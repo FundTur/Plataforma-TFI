@@ -7,13 +7,16 @@ import {
   ManyToOne,
   UpdateDateColumn,
   CreateDateColumn,
+  BaseEntity,
 } from "typeorm";
 import { Pago } from "./Pago";
 import { Rol } from "./Rol";
 import { Pais } from "./Pais";
+import { Notificacion } from "./Notificacion";
+
 
 @Entity("usuario")
-export class Usuario {
+export class Usuario extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -29,16 +32,15 @@ export class Usuario {
   @Column()
   password: string;
 
-  
   @Column()
   estado: string;
-  
+
   @Column()
   telefono: string;
-  
+
   @Column()
   estadoPlan: string;
-  
+
   // Meta datos de la tabla
   @UpdateDateColumn()
   dateUpdated: Date;
@@ -56,4 +58,7 @@ export class Usuario {
 
   @ManyToOne(() => Pais, (pais) => pais.usuarios)
   pais: Pais;
+
+  @ManyToMany(() => Notificacion, (notificacion) => notificacion.usuario)
+  notificacion: Notificacion[];
 }

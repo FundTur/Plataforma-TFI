@@ -4,12 +4,13 @@ import {
   Column,
   CreateDateColumn,
   ManyToOne,
+  BaseEntity,
 } from "typeorm";
 import { Usuario } from "./Usuario";
 import { Plan } from "./Plan";
 
 @Entity("pago")
-export class Pago {
+export class Pago extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -22,6 +23,6 @@ export class Pago {
   @ManyToOne(() => Usuario, (usuario) => usuario.pagos)
   usuario: Usuario;
 
-  @ManyToOne(() => Plan, (plan) => plan.pagos) 
+  @ManyToOne(() => Plan, (plan) => plan.pagos)
   plan: Plan;
 }
