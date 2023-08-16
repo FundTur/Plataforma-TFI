@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-export const createOrder =  (req: Request, res: Response) => res.send("creating order")
-
-var mercadopago = require('mercadopago');
+import mercadopago from 'mercadopago';
+export const createOrder =  async (req: Request, res: Response) =>
+{
 mercadopago.configure({
-    access_token: 'YOUR_ACCESS_TOKEN'
+    access_token: 'TEST-8252368852972571-080912-72b62ce94990f80ed7024b0cdb8e7312-1446607740'
 });
 
 var preference = {
@@ -17,6 +17,17 @@ var preference = {
   ]
 };
 
-mercadopago.preferences.create(preference)
+const result = await mercadopago.preferences.create({
+  items:[
+      {
+        title: 'Test',
+        unit_price: 10.5,
+        currency_id: 'ARS',
+        quantity: 1,
 
-//modificacion de preferencias para subscripciones de pago pendiente (cuenta propia)
+      }
+
+  ]
+})
+console.log(result);
+res.send("creating order")}
