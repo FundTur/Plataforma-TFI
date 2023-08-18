@@ -28,7 +28,12 @@
     "mysql2": "^3.2.0",
     "node-lombok": "^1.1.1",
     "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.3.14"
+    "typeorm": "^0.3.14",
+    "class-transformer": "^0.5.1",
+    "cors": "^2.8.5",
+    "mercadopago": "^0.0.6",
+    "multer": "^1.4.5-lts.1",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.19.3/xlsx-0.19.3.tgz"
   },
   "devDependencies": {
     "@types/cors": "^2.8.13",
@@ -37,6 +42,9 @@
     "@types/multer": "^1.4.7",
     "@types/node": "^18.15.11",
     "ts-node-dev": "^2.0.0",
-    "typescript": "^5.0.4"
+    "typescript": "^5.0.4",
+    "@types/mercadopago": "^1.5.8",
+    "@types/multer": "^1.4.7"
   }
+
 }

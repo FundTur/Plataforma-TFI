@@ -10,7 +10,6 @@ import convocatoriaRouter from "./convocatoria.routes";
 import ciudadRouter from "./ciudad.routes";
 import categoriaRouter from "./categoria.routes";
 import beneficioRouter from "./beneficio.routes";
-import mercadopagopay from "./mercadopagopay.routes";
 
 const routes = Router();
 
@@ -24,5 +23,5 @@ routes.use("/convocatoria", convocatoriaRouter);
 routes.use("/ciudad", ciudadRouter);
 routes.use("/categoria", categoriaRouter);
 routes.use("/beneficio", beneficioRouter);
-routes.use("/mercadopago", mercadopagopay);
+
 export default routes;
