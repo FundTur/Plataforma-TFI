@@ -89,7 +89,8 @@
   </html>
 
 */
-
+import * as MercadoPago from 'mercadopago'; 
+import { Request, Response } from "express";
 const mp = new MercadoPago('YOUR_PUBLIC_KEY');
 const bricksBuilder = mp.bricks();
 
@@ -119,6 +120,8 @@ mercadopago.payment.save(payment_data)
       transaction_amount: 100,
       description: 'Título do produto',
       payment_method_id: 'pix',
+      issuer_id: req.body.issuer,
+      notification_url: "http://requestbin.fullcontact.com/1ogudgk1",
       payer: {
         email: 'test@test.com',
         first_name: 'Test',
@@ -148,7 +151,7 @@ mercadopago.payment.save(payment_data)
 
     mercadopago.post("/preapproval_plan", (req, res) => {
  //Arreglar esa función
-      var options = {
+      var plan = {
         url: 'https://api.mercadopago.com/preapproval_plan',
         headers: {
           'Authorization': 'Bearer [MERCADO PAGO ACCESS TOKEN]',
@@ -190,7 +193,7 @@ mercadopago.payment.save(payment_data)
 
   mercadopago.post("/preapproval", (req, res) => {
  //Arreglar esa función
-    var options = {
+    var subscription = {
       url: 'https://api.mercadopago.com/preapproval',
       headers: {
         'Authorization': 'Bearer [MERCADO PAGO ACCESS TOKEN]',
@@ -214,9 +217,40 @@ mercadopago.payment.save(payment_data)
   status: "authorized"
 }}})
 
-request(options, function (error, response, body) {
+request(options, function (error, res, body) {
   if (error) throw new Error(error);
 });
 res.status(200)
 
-//FALTAN LOS WEBHOOKS
+
+
+//WEBHOOKS
+
+switch (req.body.type) {
+  case "payment":
+    MercadoPago.payment.findById(req.body.data.id, function (err, payment_data) {
+      if (err) throw new Error(error);
+         else {
+        res.status(200)
+      }
+    });
+    break;
+  case "plan":
+    MercadoPago.plan.findById(req.body.data.id, function (err, plan) {
+      if (err) throw new Error(error);
+         else {
+        res.status(200)
+      }
+    });
+    break;
+  case "subscription":
+    MercadoPago.subscription.findById(req.body.data.id, function (err, subscription) {
+      if (err) throw new Error(error);
+         else {
+        res.status(200)
+      }
+    });
+    break;
+}
+
+
