@@ -3,22 +3,22 @@
         <v-layout>
             <v-navigation-drawer color="#18222F" rail permanent>
                 <v-list-item nav id="icon-tfi">
-                    <img src="../public/img/icon-tfi2.png" alt="TFI-LATAM">
+                    <img src="/img/icon-tfi2.png" alt="TFI-LATAM">
                 </v-list-item>
 
                 <v-divider></v-divider>
 
                 <v-list density="compact" nav>
                     <v-list-item value="cubo">
-                        <img src="../public/img/cubo.svg" alt="">
+                        <img src="/img/cubo.svg" alt="">
                     </v-list-item>
 
                     <v-list-item value="user">
-                        <img src="../public/img/users.svg" alt="">
+                        <img src="/img/users.svg" alt="">
                     </v-list-item>
 
                     <v-list-item value="folder">
-                        <img src="../public/img/folder.svg" alt="">
+                        <img src="/img/folder.svg" alt="">
                     </v-list-item>
                 </v-list>
             </v-navigation-drawer>

@@ -1,52 +1,19 @@
-<template>
-    <main class="main-container">
-        <section class="form-section">
-            <section class="header-section">
-                <div class="header-text">
-                    <span class="header-secondary-text">Dashboard</span>
-                    <span class="header-primary-text">TFI Convocatorias</span>
-                </div>
-                <div class="header-icon">
-                    <img src="../public/img/icon-tfi.png" alt="TFI Icon">
-                </div>
-            </section>
-            <v-form @submit.prevent>
-                <h1 id="title-login">Login</h1>
-                <v-text-field variant="solo-filled" v-model="email" :rules="[rules.required, rules.email]" label="User"
-                    placeholder="example@gmail.com" type="email" class="textFild"></v-text-field>
-
-                <v-text-field variant="solo" v-model="password" :rules="[rules.required]" label="Password"
-                    placeholder="Password" type="password" class="textFild"></v-text-field>
-
-                <v-btn class="btn" color="#18222F" size="x-large">
-                    Sign in
-                </v-btn>
-                <v-btn class="btn" color="white" size="x-large">
-                    Forgot password
-                </v-btn>
-            </v-form>
-            <span id="span-help">¿Necesitas ayuda?</span>
-        </section>
-        <div class="image-section">
-            <img src="../public/img/fondoLogin.png" alt="Login Background" class="background-image">
-            <span class="image-overlay">¡Encontrar la convocatoria perfecta! Tenemos un inventario de más de 1400 actores
-                que pueden apoyar tu proyecto.</span>
-        </div>
-    </main>
-</template>
-
 <script setup lang="ts">
 import { ref } from "vue"
 
-const email = ref('')
-const password = ref('')
-const rules = {
-    required: (value: any) => !!value || 'El campo es obligatorio.',
-    counter: (value: string | any[]) => value.length <= 20 || 'Maximo 20 caracteres',
-    email: (value: string) => {
-        const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        return pattern.test(value) || 'Correo no valido.'
-    },
+const formstyle = ref("form-login")
+let activeForm = ref(true)
+let text = ref("Sing In")
+
+function handleChange() {
+    if (activeForm.value == true) {
+        activeForm.value = false
+        text.value = "Sing in"
+    } else {
+        activeForm.value = true
+        text.value = "Sing up"
+    }
+
 }
 
 useHead({
@@ -59,7 +26,7 @@ useHead({
 });
 
 definePageMeta({
-    layout: "default"
+    layout: "default",
 })
 
 useSeoMeta({
@@ -67,16 +34,41 @@ useSeoMeta({
 })
 
 
-
-
 </script>
+
+<template>
+    <main class="main-container">
+        <section class="form-section">
+            <section class="header-section">
+                <div class="header-text">
+                    <span class="header-secondary-text">Dashboard</span>
+                    <h2 class="header-primary-text">TFI Convocatorias</h2>
+                </div>
+                <div class="header-icon">
+                    <img src="/img/icon-tfi.png" alt="TFI Icon">
+                </div>
+            </section>
+            <section class="formulario">
+                <FormLogin v-if="activeForm" :custom-class="formstyle" />
+                <FormRegist v-else />
+                <v-btn class="btn btn-forg" color="white" size="x-large" @click="handleChange">
+                    {{ text }}
+                </v-btn>
+            </section>
+            <span id="span-help">¿Necesitas ayuda?</span>
+        </section>
+        <div class="image-section">
+            <img src="/img/fondoLogin.png" alt="Login Background" class="background-image">
+            <span class="image-overlay">¡Encontrar la convocatoria perfecta! Tenemos un inventario de más de 1400 actores
+                que pueden apoyar tu proyecto.</span>
+        </div>
+    </main>
+</template>
 
 <style scoped>
 .main-container {
-    margin: 0;
     display: grid;
     grid-template-columns: 40% 60%;
-    height: 100vh;
 }
 
 .form-section {
@@ -84,7 +76,6 @@ useSeoMeta({
     justify-content: center;
     align-items: center;
     display: grid;
-    padding: 20px;
 }
 
 .form-section form {
@@ -99,9 +90,9 @@ useSeoMeta({
 }
 
 .background-image {
-    max-width: 200vw;
+    min-width: 90vw;
+    min-height: 100vh;
     max-height: 100vh;
-    height: auto;
 }
 
 .image-overlay {
@@ -109,19 +100,15 @@ useSeoMeta({
     bottom: 64px;
     right: 70px;
     color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    width: 25%;
-    font-size: 1.25rem;
-    font-weight: 400;
+    width: 35vw;
+    font-size: 1.1rem;
     text-align: end;
 }
 
 .header-section {
-    grid-template-columns: 12% 60%;
+    grid-template-columns: 15% 65%;
     grid-auto-flow: row;
     display: grid;
-    gap: 0px 10px;
     grid-template-areas:
         "header-icon header-text";
     justify-content: start;
@@ -130,13 +117,11 @@ useSeoMeta({
 .header-text {
     display: grid;
     grid-template-rows: 35% 45%;
-    gap: 0px 0px;
     grid-auto-flow: row;
     grid-template-areas:
         "header-secondary-text"
         "header-primary-text";
     grid-area: header-text;
-    align-items: center;
     align-content: space-around;
 }
 
@@ -155,60 +140,45 @@ useSeoMeta({
 .header-icon {
     grid-area: header-icon;
     background-color: #B84D2A;
-    border-radius: 10px;
-    width: 60px;
-    height: 60px;
+    border-radius: 11px;
+    width: 3.5vw;
+    height: 7vh;
     display: grid;
     justify-content: center;
     align-items: center;
 }
 
-.textFild {
-    font-family: Inter;
-    font-weight: 600;
-    line-height: normal;
-    margin-top: .5rem;
+.header-icon img {
+    width: 3vw;
+}
+
+.formulario {
+    display: flex;
+    align-items: flex-end;
     width: 30vw;
 }
 
-.btn {
-    margin: 1rem 2rem 0 0;
-    min-height: 3.5rem;
-    width: 14.1vw;
-}
-
-#title-login {
-    color: #210011;
-    font-family: Inter;
-    font-size: 48px;
-    font-style: normal;
-    font-weight: 800;
-    line-height: normal;
+.btn-forg {
+    margin-left: -8vw;
+    width: 8vw;
 }
 
 #span-help {
     text-align: center;
     color: #18222F;
     font-family: Inter;
-    font-size: 1.5rem;
-    font-style: normal;
+    font-size: 1.3rem;
     font-weight: 700;
-    line-height: normal;
-    margin-top: auto;
+    margin-top: inherit;
 }
 
-@media (max-width: 1366px) {
+@media (max-width: 1280px) {
 
-    .image-overlay {
-        bottom: 44px;
-        right: 30px;
-        width: 30%;
-        font-size: 1rem;
-    }
+
 
     .header-icon {
-        width: 50px;
-        height: 50px;
+        width: 4vw;
+        height: 6vh;
     }
 
     .header-icon img {
@@ -216,32 +186,114 @@ useSeoMeta({
     }
 
     .header-primary-text {
-        font-size: 1.6rem;
+        font-size: 1.25rem;
     }
 
-    .header-secondary-text {
-        font-size: .8rem;
+    .image-overlay {
+        font-size: .9rem;
+
     }
 
-    .btn {
-        margin: 1rem 2rem 0 0;
-        min-height: 3.5rem;
-        width: 13.7vw;
-        font-size: 1rem;
-    }
-
-    #title-login {
-        font-size: 1.8rem;
+    .formulario {
+        display: flex;
+        align-items: flex-end;
+        width: 30vw;
     }
 
 }
 
-@media (max-width: 768px) {
+@media (max-width: 960px) {
 
-    .background-image {
+    .main-container {
+        display: block;
+    }
+
+    .background-image,
+    .image-overlay {
         display: none;
     }
 
+    .header-section {
+        grid-template-columns: 8vw 55vw;
+    }
+
+    .header-icon {
+        width: 6vw;
+        height: 6vh;
+    }
+
+    .header-icon img {
+        width: 5vw;
+    }
+
+    .header-primary-text {
+        font-size: 1.5rem;
+    }
+
+    .form-section {
+        height: 90vh;
+        display: grid;
+        grid:
+            "header-section" 30% "form-login" 50% "span-help" 20% / 1fr;
+        justify-items: center;
+    }
+
+    .formulario {
+        display: flex;
+        align-items: flex-end;
+        width: 62vw;
+    }
+
+}
+
+@media (max-width: 665px) {
+
+    .header-section {
+        grid-template-columns: 8vw 52vw;
+    }
+
+    .header-icon {
+        width: 6.5vw;
+        height: 5.4vh;
+    }
+
+    .header-icon img {
+        width: 5.5vw;
+    }
+
+    .formulario {
+        width: 60vw;
+    }
+
+}
+
+@media (max-width: 520px) {
+
+    .header-section {
+        grid-template-columns: 15vw 60vw;
+    }
+
+    .header-primary-text {
+        font-size: 1.3rem;
+    }
+
+    .header-icon {
+        width: 9vw;
+        height: 5.5vh;
+    }
+
+    .header-icon img {
+        width: 8vw;
+    }
+
+    .formulario {
+        width: 82vw;
+    }
+
+    .btn-forg {
+        margin-left: -28vw;
+        width: 35vw;
+    }
 
 
 }

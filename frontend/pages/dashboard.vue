@@ -7,6 +7,7 @@
 <script setup lang="ts">
 definePageMeta({
     layout: "sidebar",
+    middleware: "auth"
 })
 
 useSeoMeta({
