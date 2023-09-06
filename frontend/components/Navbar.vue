@@ -1,5 +1,5 @@
 <template>
-    <v-app-bar>
+    <v-app-bar v-bind:optionsMenu="optionsMenu">
         <div class="layout">
             <div><img src="/img/calendar.svg" alt=""></div>
 
@@ -13,7 +13,11 @@
 
 <script setup lang="ts" >
 const props = defineProps<{
-
+    optionsMenu: {
+        secundaryTitle: 'Principal',
+        primaryTitle: "Convocatorias",
+        src: "calendar.svg",
+    }
 
 }>();
 </script>
