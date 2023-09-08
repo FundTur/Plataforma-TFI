@@ -1,14 +1,14 @@
 <template>
-    <v-form @submit.prevent :class="customClass">
-        <h1 id="title-login">Login</h1>
-        <v-text-field variant="solo-filled" v-model="email" :rules="[rules.required, rules.email]" label="User"
-            placeholder="example@gmail.com" type="email" class="textFild"></v-text-field>
+    <v-form @submit.prevent="login" :class="customClass">
+        <h1 id="title-login"> {{ $t('Login') }} </h1>
+        <v-text-field variant="solo-filled" v-model="email" :rules="[rules.required, rules.email]"
+            :label="$t('formulario.User')" placeholder="example@gmail.com" type="email" class="textFild"></v-text-field>
 
-        <v-text-field variant="solo" v-model="password" :rules="[rules.required]" label="Password" placeholder="Password"
-            type="password" class="textFild"></v-text-field>
+        <v-text-field variant="solo" v-model="password" :rules="[rules.required]" :label="$t('formulario.Password')"
+            :placeholder="$t('formulario.Password')" type="password" class="textFild"></v-text-field>
 
-        <v-btn class="btn" color="#18222F" size="x-large">
-            Sign in
+        <v-btn type="submit" class="btn" color="#18222F" size="x-large">
+            {{ $t('SING IN') }}
         </v-btn>
     </v-form>
 </template>
@@ -28,6 +28,16 @@ const rules = {
     },
 }
 
+const emit = defineEmits<{
+    (e: "login-succes"): void,
+}>();
+
+
+function login() {
+    localStorage.setItem('token', 'hola');
+    emit("login-succes")
+}
+
 const props = defineProps<{
     customClass?: string
 }>();
@@ -44,7 +54,8 @@ const props = defineProps<{
 }
 
 .btn {
-    width: 8vw;
+    overflow: hidden;
+    width: auto !important;
 }
 
 #title-login {
@@ -100,5 +111,4 @@ const props = defineProps<{
         width: 82vw;
     }
 }
-
 </style>

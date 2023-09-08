@@ -1,0 +1,22 @@
+{
+  "Login": "Iniciar Sesion",
+  "Register": "Registrarse",
+  "Recruitment": "Convocatorias",
+  "formulario": {
+    "User": "Usuario",
+    "Password": "Contraseña",
+    "Email": "Correo",
+    "FirstName": "Nombre",
+    "LastName": "Apellido"
+  },
+  "dashboard": {
+    "Users": "Usuarios",
+    "Files": "Archivos",
+    "Main": "Principal",
+    "Search": "Buscar Entidad"
+  },
+  "SING IN": "Iniciar Sesion",
+  "SING UP": "Registrarse",
+  "Need help": "Necesitas ayuda",
+  "TextLogin": "¡Encontrar la convocatoria perfecta! Tenemos un inventario de más de 1400 actores que pueden apoyar tu proyecto."
+}

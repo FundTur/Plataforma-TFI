@@ -1,22 +1,26 @@
 <template>
     <v-app-bar v-bind:optionsMenu="optionsMenu">
         <div class="layout">
-            <div><img src="/img/calendar.svg" alt=""></div>
+            <div><img :src='optionsMenu.src' alt=""></div>
 
             <div id="container-text">
-                <span>Principal</span>
-                <h2>Convocatorias</h2>
+                <span> {{ optionsMenu.secundaryTitle }} </span>
+                <h2> {{ optionsMenu.primaryTitle }} </h2>
             </div>
         </div>
+        <v-spacer></v-spacer>
+        <v-btn icon>
+            <img src="/img/icon-mas.svg" alt="">
+        </v-btn>
     </v-app-bar>
 </template>
 
 <script setup lang="ts" >
 const props = defineProps<{
     optionsMenu: {
-        secundaryTitle: 'Principal',
-        primaryTitle: "Convocatorias",
-        src: "calendar.svg",
+        secundaryTitle: string,
+        primaryTitle: string,
+        src: string,
     }
 
 }>();

@@ -19,7 +19,7 @@
         </v-navigation-drawer>
         <v-navigation-drawer color="#F0F4F9" v-model="drawer" :rail="rail" permanent @click="rail = false">
             <v-list>
-                <v-list-item prepend-avatar="TFI" @click.stop="rail = !rail">
+                <v-list-item prepend-avatar="/img/lupa.svg" @click.stop="rail = !rail">
                     <div id="title-navbar">
                         <span>Plataforma TFI</span><br>
                         <span id="primary-text">DASHBOARD</span>
@@ -34,7 +34,7 @@
                     <pre v-else-if="error">{{ error }}</pre>
                 </v-list-item>
 
-                <v-list-item v-for="(results, index) in product.results" :key="index">
+                <v-list-item  v-for="(results, index) in product.results" :key="index">
                     <img :src="results.image" alt="" width="50px">
                 </v-list-item>
 
@@ -51,6 +51,13 @@
 <script setup>
 
 import { ref } from "vue"
+import { useI18n } from 'vue-i18n';
+
+const { locale } = useI18n();
+
+if (process.client) {
+    locale.value = window.navigator.language.substring(0, 2);
+}
 
 const id = ref("")
 const ShowView = ref("convocatorias")
@@ -58,6 +65,13 @@ const drawer = ref(true)
 const rail = ref(true)
 const { data: product, pending, error } = await useFetch(() => `https://rickandmortyapi.com/api/character/?name=${id.value}`)
 
+definePageMeta({
+    middleware: "auth"
+})
+
+useSeoMeta({
+    title: "Dashboard",
+})
 
 </script>
 

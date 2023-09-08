@@ -1,17 +1,30 @@
 <script setup lang="ts">
 import { ref } from "vue"
+import { useI18n } from 'vue-i18n';
+
+const { t, locale } = useI18n();
+const router = useRouter();
+
+if (process.client) {
+    locale.value = window.navigator.language.substring(0, 2);
+}
+
+function redirectDashboard() {
+    router.push("/dashboard")
+
+}
 
 const formstyle = ref("form-login")
 let activeForm = ref(true)
-let text = ref("Sing In")
+let text = ref(t("SING UP"))
 
 function handleChange() {
     if (activeForm.value == true) {
         activeForm.value = false
-        text.value = "Sing in"
+        text.value = t("SING IN")
     } else {
         activeForm.value = true
-        text.value = "Sing up"
+        text.value = t("SING UP")
     }
 
 }
@@ -27,12 +40,13 @@ useHead({
 
 definePageMeta({
     layout: "default",
+    middleware: "noauth"
+
 })
 
 useSeoMeta({
     title: "Login"
 })
-
 
 </script>
 
@@ -42,25 +56,24 @@ useSeoMeta({
             <section class="header-section">
                 <div class="header-text">
                     <span class="header-secondary-text">Dashboard</span>
-                    <h2 class="header-primary-text">TFI Convocatorias</h2>
+                    <h2 class="header-primary-text">TFI {{ $t('Recruitment') }} </h2>
                 </div>
                 <div class="header-icon">
                     <img src="/img/icon-tfi.png" alt="TFI Icon">
                 </div>
             </section>
             <section class="formulario">
-                <FormLogin v-if="activeForm" :custom-class="formstyle" />
+                <FormLogin @login-succes="redirectDashboard" v-if="activeForm" :custom-class="formstyle" />
                 <FormRegist v-else />
                 <v-btn class="btn btn-forg" color="white" size="x-large" @click="handleChange">
                     {{ text }}
                 </v-btn>
             </section>
-            <span id="span-help">¿Necesitas ayuda?</span>
+            <span id="span-help">¿ {{ $t('Need help') }} ?</span>
         </section>
         <div class="image-section">
             <img src="/img/fondoLogin.png" alt="Login Background" class="background-image">
-            <span class="image-overlay">¡Encontrar la convocatoria perfecta! Tenemos un inventario de más de 1400 actores
-                que pueden apoyar tu proyecto.</span>
+            <span class="image-overlay"> {{ $t('TextLogin') }} </span>
         </div>
     </main>
 </template>
@@ -159,8 +172,9 @@ useSeoMeta({
 }
 
 .btn-forg {
-    margin-left: -8vw;
-    width: 8vw;
+    margin-left: -12vw;
+    overflow: hidden;
+    width: auto !important;
 }
 
 #span-help {

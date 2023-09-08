@@ -1,18 +1,18 @@
 <template>
     <v-form @submit.prevent class="form-login">
-        <h1 id="title-login">Register</h1>
+        <h1 id="title-login">{{ $t('Register') }}</h1>
         <div class="container-input">
-            <v-text-field variant="solo-filled" :rules="[rules.required]" label="Nombre" placeholder="Jhoan Alexander"
-                type="text" class="textFild-row"></v-text-field>
-            <v-text-field variant="solo-filled" :rules="[rules.required]" label="Apellido" placeholder="Torres" type="text"
-                class="textFild-row"></v-text-field>
+            <v-text-field variant="solo-filled" :rules="[rules.required]" :label="$t('formulario.FirstName')"
+                placeholder="Jhoan" type="text" class="textFild-row"></v-text-field>
+            <v-text-field variant="solo-filled" :rules="[rules.required]" :label="$t('formulario.LastName')"
+                placeholder=" Torres " type="text" class="textFild-row"></v-text-field>
         </div>
-        <v-text-field variant="solo-filled" v-model="email" :rules="[rules.required, rules.email]" label="Email"
-            placeholder="example@gmail.com" type="email" class="textFild"></v-text-field>
-        <v-text-field variant="solo" v-model="password" :rules="[rules.required]" label="Contraseña"
-            placeholder="Contraseña" type="password" class="textFild"></v-text-field>
+        <v-text-field variant="solo-filled" v-model="email" :rules="[rules.required, rules.email]"
+            :label="$t('formulario.Email')" placeholder="example@gmail.com" type="email" class="textFild"></v-text-field>
+        <v-text-field variant="solo" v-model="password" :rules="[rules.required]" :label="$t('formulario.Password')"
+            :placeholder="$t('formulario.Password')" type="password" class="textFild"></v-text-field>
         <v-btn class="btn" color="#18222F" size="x-large">
-            Sign up
+            {{ $t('SING UP') }}
         </v-btn>
     </v-form>
 </template>
@@ -119,7 +119,7 @@ const rules = {
         display: block;
     }
 
-    .btn{
+    .btn {
         width: 35%;
     }
 

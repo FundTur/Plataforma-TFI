@@ -1,12 +1,21 @@
 <template>
     <div>
-        <span>Principal</span>
-        <h2>Usuarios</h2>
+        <Navbar v-model:optionsMenu="optionsMenu" />
     </div>
 </template>
 
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 
+const { t } = useI18n();
+
+
+
+const optionsMenu = {
+    secundaryTitle: t('dashboard.Main'),
+    primaryTitle: t('dashboard.Users'),
+    src: "/img/user-cicle.svg",
+}
 </script>
 
 <style scoped></style>

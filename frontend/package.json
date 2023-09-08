@@ -9,8 +9,10 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@intlify/unplugin-vue-i18n": "^1.0.1",
     "@nuxt/devtools": "latest",
-    "nuxt": "^3.7.0"
+    "nuxt": "^3.7.0",
+    "vue-i18n": "^9.3.0"
   },
   "dependencies": {
     "vuetify": "^3.3.14"
