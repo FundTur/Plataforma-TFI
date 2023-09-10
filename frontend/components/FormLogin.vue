@@ -28,14 +28,9 @@ const rules = {
     },
 }
 
-const emit = defineEmits<{
-    (e: "login-succes"): void,
-}>();
-
-
 function login() {
-    localStorage.setItem('token', 'hola');
-    emit("login-succes")
+    localStorage.setItem('Sesion', 'hola');
+    navigateTo("/dashboard")
 }
 
 const props = defineProps<{

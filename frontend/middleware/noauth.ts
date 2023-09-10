@@ -1,11 +1,10 @@
 export default defineNuxtRouteMiddleware((to) => {
   if (process.client) {
-    const token = localStorage.getItem("token");
-    if (!token && to.fullPath !== "/") {
-      return navigateTo("/");
-    }
-    if (token && to.fullPath === "/") {
-      return navigateTo("/dashboard"); // Cambia "/dashboard" a la ruta deseada
+    const token = localStorage.getItem("Sesion");
+    if (!token) {
+      if (to.fullPath !== "/") {
+        return navigateTo("/");
+      }
     }
   }
 });

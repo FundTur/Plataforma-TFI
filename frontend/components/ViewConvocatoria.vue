@@ -1,5 +1,6 @@
 <template>
     <Navbar v-model:optionsMenu="optionsMenu" />
+    <Calendar />
 </template>
 
 <script setup lang="ts">

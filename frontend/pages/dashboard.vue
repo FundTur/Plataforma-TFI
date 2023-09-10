@@ -66,7 +66,7 @@ const rail = ref(true)
 const { data: product, pending, error } = await useFetch(() => `https://rickandmortyapi.com/api/character/?name=${id.value}`)
 
 definePageMeta({
-    middleware: "auth"
+    middleware: ["auth","auto-logout"]
 })
 
 useSeoMeta({

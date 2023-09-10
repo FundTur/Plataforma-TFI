@@ -3,15 +3,9 @@ import { ref } from "vue"
 import { useI18n } from 'vue-i18n';
 
 const { t, locale } = useI18n();
-const router = useRouter();
 
 if (process.client) {
     locale.value = window.navigator.language.substring(0, 2);
-}
-
-function redirectDashboard() {
-    router.push("/dashboard")
-
 }
 
 const formstyle = ref("form-login")
@@ -63,7 +57,7 @@ useSeoMeta({
                 </div>
             </section>
             <section class="formulario">
-                <FormLogin @login-succes="redirectDashboard" v-if="activeForm" :custom-class="formstyle" />
+                <FormLogin v-if="activeForm" :custom-class="formstyle" />
                 <FormRegist v-else />
                 <v-btn class="btn btn-forg" color="white" size="x-large" @click="handleChange">
                     {{ text }}
