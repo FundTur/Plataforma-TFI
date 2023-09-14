@@ -113,7 +113,7 @@ useSeoMeta({
 }
 
 .header-section {
-    grid-template-columns: 15% 65%;
+    grid-template-columns: 15% 70%;
     grid-auto-flow: row;
     display: grid;
     grid-template-areas:
@@ -148,27 +148,28 @@ useSeoMeta({
     grid-area: header-icon;
     background-color: #B84D2A;
     border-radius: 11px;
-    width: 3.5vw;
-    height: 7vh;
+    width: 60px;
+    height: 60px;
     display: grid;
     justify-content: center;
     align-items: center;
 }
 
 .header-icon img {
-    width: 3vw;
+    width: 58.75px;
+    height: 27.5px;
 }
 
 .formulario {
     display: flex;
     align-items: flex-end;
-    width: 30vw;
+
 }
 
 .btn-forg {
     margin-left: -12vw;
     overflow: hidden;
-    width: auto !important;
+    width: 46% !important;
 }
 
 #span-help {
@@ -180,21 +181,15 @@ useSeoMeta({
     margin-top: inherit;
 }
 
-@media (max-width: 1280px) {
+@media (max-width: 1400px) {
 
-
-
-    .header-icon {
-        width: 4vw;
-        height: 6vh;
-    }
-
-    .header-icon img {
-        width: 3.5vw;
+    .header-section {
+        grid-template-columns: 20% 80%;
+        justify-items: center
     }
 
     .header-primary-text {
-        font-size: 1.25rem;
+        font-size: 1.7rem;
     }
 
     .image-overlay {
@@ -207,6 +202,19 @@ useSeoMeta({
         align-items: flex-end;
         width: 30vw;
     }
+
+}
+
+@media (max-width: 1200px) {
+
+    .header-section {
+        justify-items: center padding
+    }
+
+    .header-primary-text {
+        font-size: 1.55rem;
+    }
+
 
 }
 
@@ -223,15 +231,6 @@ useSeoMeta({
 
     .header-section {
         grid-template-columns: 8vw 55vw;
-    }
-
-    .header-icon {
-        width: 6vw;
-        height: 6vh;
-    }
-
-    .header-icon img {
-        width: 5vw;
     }
 
     .header-primary-text {
@@ -260,17 +259,13 @@ useSeoMeta({
         grid-template-columns: 8vw 52vw;
     }
 
-    .header-icon {
-        width: 6.5vw;
-        height: 5.4vh;
-    }
-
-    .header-icon img {
-        width: 5.5vw;
-    }
-
     .formulario {
         width: 60vw;
+    }
+
+
+    .btn-forg {
+        font-size: .9rem;
     }
 
 }
@@ -283,15 +278,6 @@ useSeoMeta({
 
     .header-primary-text {
         font-size: 1.3rem;
-    }
-
-    .header-icon {
-        width: 9vw;
-        height: 5.5vh;
-    }
-
-    .header-icon img {
-        width: 8vw;
     }
 
     .formulario {

@@ -50,7 +50,7 @@ const props = defineProps<{
 
 .btn {
     overflow: hidden;
-    width: auto !important;
+    width: 50% !important;
 }
 
 #title-login {
@@ -78,7 +78,7 @@ const props = defineProps<{
     }
 
     .btn {
-        width: 15vw;
+        width: 14vw;
         font-size: 1rem;
     }
 
@@ -95,6 +95,10 @@ const props = defineProps<{
         font-weight: 600;
         margin-top: .5rem;
         width: 60vw;
+    }
+
+    .btn {
+        font-size: 0.8rem;
     }
 
 }

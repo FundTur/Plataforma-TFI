@@ -1,7 +1,7 @@
 <template>
-    <v-btn type=”button” id="authorize_button" @click='handleAuthClick'>Ver Eventos</v-btn>
-    <div id="container-calendar" v-if="showEvent">
-        <DatePicker :attributes='event' id="app" columns="2" />
+    <div id="container-calendar">
+        <v-btn type=”button” id="authorize_button" @click='handleAuthClick'>Ver Eventos</v-btn>
+        <DatePicker :attributes='event' id="app" columns="2" v-if="showEvent" />
     </div>
 </template>
 
@@ -29,10 +29,10 @@ useHead({
 
 let tokenClient;
 const gisInited = ref(false);
-const showEvent = ref(true);
+const showEvent = ref(false);
 
-const CLIENT_ID = "";
-const API_KEY = "";
+const CLIENT_ID = "443279927884-8lhkq84ap1l3jtdpb59h1cmflh2lbq1l.apps.googleusercontent.com";
+const API_KEY = "AIzaSyCS_fB_c6iS0e3NkRaUgNVkv58CJezM-Fk";
 const DISCOVERY_DOCS = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest';
 const SCOPES = 'https://www.googleapis.com/auth/calendar.readonly'
 
@@ -110,10 +110,7 @@ async function listUpcomingEvents() {
 
     events.forEach(e => {
         event.push({
-            highlight: {
-                color: colores[e.colorId],
-                fillMode: 'light'
-            },
+            dot: true,
             popover: {
                 label: e.summary,
             },
@@ -133,13 +130,19 @@ onMounted(() => {
 
 <style>
 #container-calendar {
-    
-    margin-left: 10vw;
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#container-calendar button{
+    margin-bottom: 3rem;
 }
 
 .vc-container,
 .vc-container #app {
     width: 80vw;
-    
+
 }
 </style>
