@@ -5,7 +5,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
     function resetInactivityTimer() {
       clearTimeout(inactivityTimer);
       // 3000000
-      //TODO: Cronometro desactivado para la fase de desarrollo inactivityTimer = setTimeout(logoutUser, 60000);
+      //TODO: Cronometro desactivado para la fase de desarrollo  inactivityTimer = setTimeout(logoutUser, 60000);
     }
 
     function logoutUser() {
