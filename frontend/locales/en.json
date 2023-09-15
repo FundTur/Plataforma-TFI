@@ -1,0 +1,22 @@
+{
+  "dashboard": {
+    "Files": "Files",
+    "Main": "Main",
+    "Search": "Search",
+    "Users": "Users"
+  },
+  "formulario": {
+    "Email": "Email",
+    "FirstName": "First Name",
+    "LastName": "Last Name",
+    "Password": "Password",
+    "User": "User"
+  },
+  "Login": "Login",
+  "Need help": "Need help",
+  "Recruitment": "Call",
+  "Register": "Register",
+  "SING IN": "SING IN",
+  "SING UP": "SING UP",
+  "TextLogin": "¡Find the perfect call! We have an inventory of over 1400 actors who can support your project"
+}
