@@ -1,6 +1,6 @@
 <template>
     <v-layout>
-        <v-navigation-drawer color="#18222F" rail>
+        <v-navigation-drawer color="#18222F" permanent="" rail>
             <v-list-item class="icon" nav>
                 <img src="/img/icon-tfi2.png" alt="TFI-LATAM">
             </v-list-item>
@@ -17,8 +17,8 @@
                 </v-list-item>
             </v-list>
         </v-navigation-drawer>
-        <v-navigation-drawer color="#F0F4F9" v-model="drawer" :rail="rail" permanent @click="rail = false">
-            <v-list>
+        <v-navigation-drawer class="barra-busqueda" color="#F0F4F9" v-model="drawer" :rail="rail"  @click="rail = false">
+            <v-list >
                 <v-list-item prepend-avatar="/img/lupa.svg" @click.stop="rail = !rail">
                     <div id="title-navbar">
                         <span>Plataforma TFI</span><br>
@@ -118,4 +118,11 @@ useSeoMeta({
 input:focus {
     outline: none;
 }
+
+@media (max-width: 1280px) {
+    .barra-busqueda{
+        display: none;
+    }
+}
+
 </style>

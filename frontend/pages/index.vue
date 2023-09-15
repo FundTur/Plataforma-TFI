@@ -4,9 +4,9 @@ import { useI18n } from 'vue-i18n';
 
 const { t, locale } = useI18n();
 
-/* if (process.client) {
+if (process.client) {
     locale.value = window.navigator.language.substring(0, 2);
-} */
+}
 
 const formstyle = ref("form-login")
 let activeForm = ref(true)

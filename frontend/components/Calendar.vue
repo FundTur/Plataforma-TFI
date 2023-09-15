@@ -1,7 +1,7 @@
 <template>
     <div id="container-calendar">
         <v-btn type=”button” id="authorize_button" @click='handleAuthClick'>Ver Eventos</v-btn>
-        <DatePicker :attributes='event' id="app" columns="2" v-if="showEvent" />
+        <DatePicker :attributes='event' id="app" rows="2" columns="2" v-if="showEvent" />
     </div>
 </template>
 
@@ -94,7 +94,7 @@ async function listUpcomingEvents() {
             'timeMin': (new Date()).toISOString(),
             'showDeleted': false,
             'singleEvents': true,
-            'maxResults': 20,
+            'maxResults': 126,
             'orderBy': 'startTime',
         };
         response = await gapi.client.calendar.events.list(request);
