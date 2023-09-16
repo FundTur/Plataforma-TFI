@@ -1,22 +1,28 @@
 {
-  "Login": "Iniciar Sesion",
-  "Register": "Registrarse",
-  "Recruitment": "Convocatorias",
-  "formulario": {
-    "User": "Usuario",
-    "Password": "Contraseña",
-    "Email": "Correo",
-    "FirstName": "Nombre",
-    "LastName": "Apellido"
-  },
+  "Accountcheck": "Confirmar Cuenta",
+  "Continue": "Continuar",
+  "ContinueTFI": "Continuar a TFI",
   "dashboard": {
-    "Users": "Usuarios",
     "Files": "Archivos",
     "Main": "Principal",
-    "Search": "Buscar Entidad"
+    "Search": "Buscar Entidad",
+    "Users": "Usuarios"
   },
+  "formulario": {
+    "Email": "Correo",
+    "FirstName": "Nombre",
+    "LastName": "Apellido",
+    "Password": "Contraseña",
+    "PasswordConf": "Confirma tu contraseña",
+    "Phone": "Telefono",
+    "User": "Usuario"
+  },
+  "Login": "Iniciar Sesion",
+  "Need help": "Necesitas ayuda",
+  "Recruitment": "Convocatorias",
+  "Register": "Registrarse",
   "SING IN": "Iniciar Sesion",
   "SING UP": "Registrarse",
-  "Need help": "Necesitas ayuda",
+  "TextCheck": "A continuación, ingresa el código de verificación que te enviamos a tu correo electrónico ",
   "TextLogin": "¡Encontrar la convocatoria perfecta! Tenemos un inventario de más de 1400 actores que pueden apoyar tu proyecto."
 }

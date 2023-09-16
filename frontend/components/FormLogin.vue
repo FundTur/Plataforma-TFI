@@ -1,5 +1,5 @@
 <template>
-    <v-form @submit.prevent="login" :class="customClass">
+    <v-form @submit.prevent="login">
         <h1 id="title-login"> {{ $t('Login') }} </h1>
         <v-text-field variant="solo-filled" v-model="email" :rules="[rules.required, rules.email]"
             :label="$t('formulario.User')" placeholder="example@gmail.com" type="email" class="textFild"></v-text-field>
@@ -7,9 +7,12 @@
         <v-text-field variant="solo" v-model="password" :rules="[rules.required]" :label="$t('formulario.Password')"
             :placeholder="$t('formulario.Password')" type="password" class="textFild"></v-text-field>
 
-        <v-btn type="submit" class="btn" color="#18222F" size="x-large">
-            {{ $t('SING IN') }}
-        </v-btn>
+        <div id="btn-text">
+            <v-btn type="submit" class="btn" color="#474697" size="large">
+                {{ $t('SING IN') }}
+            </v-btn>
+            <p>¿Forgot password?</p>
+        </div>
     </v-form>
 </template>
 
@@ -33,10 +36,6 @@ function login() {
     navigateTo("/dashboard")
 }
 
-const props = defineProps<{
-    customClass?: string
-}>();
-
 </script>
 
 <style scoped>
@@ -48,10 +47,6 @@ const props = defineProps<{
     width: 30vw;
 }
 
-.btn {
-    overflow: hidden;
-    width: 50% !important;
-}
 
 #title-login {
     color: #210011;
@@ -62,10 +57,30 @@ const props = defineProps<{
     line-height: normal;
 }
 
+#btn-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+
+p {
+    width: 50%;
+    color: #000;
+    font-family: Inter;
+    font-size: 1.3rem;
+    font-weight: 700;
+
+}
+
 @media (max-width: 1366px) {
 
     #title-login {
         font-size: 1.8rem;
+    }
+
+    p {
+        font-size: 1rem;
+        margin-left: 1rem;
     }
 }
 
@@ -77,9 +92,8 @@ const props = defineProps<{
         width: 62vw;
     }
 
-    .btn {
-        width: 14vw;
-        font-size: 1rem;
+    p {
+        font-size: 1.3rem;
     }
 
 }
@@ -95,10 +109,6 @@ const props = defineProps<{
         font-weight: 600;
         margin-top: .5rem;
         width: 60vw;
-    }
-
-    .btn {
-        font-size: 0.8rem;
     }
 
 }
