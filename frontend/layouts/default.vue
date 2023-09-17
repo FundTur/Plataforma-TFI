@@ -86,7 +86,7 @@ useHead({
 }
 
 .header-section {
-    grid-template-columns: 15% 70%;
+    grid-template-columns: 20% 80%;
     grid-auto-flow: row;
     display: grid;
     grid-template-areas:
@@ -151,8 +151,7 @@ useHead({
 @media (max-width: 1400px) {
 
     .header-section {
-        grid-template-columns: 20% 80%;
-        justify-items: center
+        gap: 10px;
     }
 
     .header-primary-text {
@@ -174,10 +173,6 @@ useHead({
 
 @media (max-width: 1200px) {
 
-    .header-section {
-        justify-items: center padding
-    }
-
     .header-primary-text {
         font-size: 1.55rem;
     }
@@ -194,10 +189,6 @@ useHead({
     .background-image,
     .image-overlay {
         display: none;
-    }
-
-    .header-section {
-        grid-template-columns: 8vw 55vw;
     }
 
     .header-primary-text {
@@ -221,10 +212,6 @@ useHead({
 }
 
 @media (max-width: 665px) {
-
-    .header-section {
-        grid-template-columns: 8vw 52vw;
-    }
 
     .formulario {
         width: 60vw;

@@ -2,9 +2,9 @@
     <v-form @submit.prevent="Register" v-model="form" class="form-login">
         <h1 id="title-login">{{ $t('Register') }}</h1>
         <v-text-field variant="solo-filled" :rules="[rules.required]" :label="$t('formulario.FirstName')"
-            placeholder="Jhoan" type="text" class="textFild-row"></v-text-field>
+            placeholder="Jhoan" type="text" class="textFild"></v-text-field>
         <v-text-field variant="solo-filled" :rules="[rules.required]" :label="$t('formulario.LastName')"
-            placeholder=" Torres " type="text" class="textFild-row"></v-text-field>
+            placeholder=" Torres " type="text" class="textFild"></v-text-field>
         <v-text-field variant="solo-filled" v-model="email" :rules="[rules.required, rules.email]"
             :label="$t('formulario.Email')" placeholder="example@gmail.com" type="email" class="textFild"></v-text-field>
         <v-text-field variant="solo-filled" v-model="phone" :rules="[rules.required]" :label="$t('formulario.Phone')"
@@ -46,47 +46,3 @@ function Register() {
 }
 
 </script>
-
-<style scoped>
-.textFild {
-    font-family: Inter;
-    font-weight: 600;
-    line-height: normal;
-    margin-top: .5rem;
-    width: 30vw;
-}
-
-#title-login {
-    color: #210011;
-    font-family: Inter;
-    font-size: 1.7rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-}
-
-#container-btn {
-    display: flex;
-    justify-content: center;
-}
-
-@media (max-width: 960px) {
-
-    .textFild {
-        margin-top: .5rem;
-        width: 62vw;
-    }
-
-}
-
-@media (max-width: 520px) {
-    .textFild {
-        margin-top: .5rem;
-        width: 80vw;
-    }
-
-    .textFild-row {
-        width: 80vw;
-    }
-
-}
-</style>

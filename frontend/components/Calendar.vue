@@ -1,7 +1,7 @@
 <template>
     <div id="container-calendar">
         <v-btn type=”button” id="authorize_button" @click='handleAuthClick'>Ver Eventos</v-btn>
-        <DatePicker :attributes='event' id="app" rows="2" columns="2" v-if="showEvent" />
+        <DatePicker :attributes='event' id="app" :rows="rows" :columns="columns" v-if="showEvent" />
     </div>
 </template>
 
@@ -30,6 +30,8 @@ useHead({
 let tokenClient;
 const gisInited = ref(false);
 const showEvent = ref(false);
+const rows = ref(2)
+const columns = ref(2)
 
 const CLIENT_ID = "443279927884-8lhkq84ap1l3jtdpb59h1cmflh2lbq1l.apps.googleusercontent.com";
 const API_KEY = "AIzaSyCS_fB_c6iS0e3NkRaUgNVkv58CJezM-Fk";
@@ -48,6 +50,20 @@ const colores = {
 }
 
 let event = []
+
+function updateSizeCal() {
+    if (process.client) {
+        if (window.innerWidth < 615) {
+            rows.value = 2
+            columns.value = 1
+
+        } else {
+            rows.value = 2
+            columns.value = 2
+
+        }
+    }
+}
 
 function gisLoaded() {
     tokenClient = google.accounts.oauth2.initTokenClient({
@@ -102,6 +118,17 @@ async function listUpcomingEvents() {
         console.log({ err });
         return;
     }
+    if (process.client) {
+        if (window.innerWidth < 615) {
+            rows.value = 2
+            columns.value = 1
+
+        } else {
+            rows.value = 2
+            columns.value = 2
+
+        }
+    }
     showEvent.value = true
     const events = response.result.items;
     if (!events || events.length == 0) {
@@ -124,6 +151,9 @@ async function listUpcomingEvents() {
 onMounted(() => {
     handleClientLoad();
     gisLoaded()
+    if (process.client) {
+        window.addEventListener('resize', updateSizeCal)
+    }
 });
 
 </script >
@@ -136,7 +166,7 @@ onMounted(() => {
     align-items: center;
 }
 
-#container-calendar button{
+#container-calendar button {
     margin-bottom: 3rem;
 }
 

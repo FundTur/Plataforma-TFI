@@ -1,5 +1,5 @@
 <template>
-    <v-form @submit.prevent="login">
+    <v-form v-model="form" @submit.prevent="login">
         <h1 id="title-login"> {{ $t('Login') }} </h1>
         <v-text-field variant="solo-filled" v-model="email" :rules="[rules.required, rules.email]"
             :label="$t('formulario.User')" placeholder="example@gmail.com" type="email" class="textFild"></v-text-field>
@@ -8,7 +8,7 @@
             :placeholder="$t('formulario.Password')" type="password" class="textFild"></v-text-field>
 
         <div id="btn-text">
-            <v-btn type="submit" class="btn" color="#474697" size="large">
+            <v-btn type="submit" :disabled="!form" class="btn" color="#474697" size="large">
                 {{ $t('SING IN') }}
             </v-btn>
             <p>¿Forgot password?</p>
@@ -22,6 +22,7 @@ import { ref } from "vue"
 
 const email = ref('')
 const password = ref('')
+const form = ref(false)
 const rules = {
     required: (value: any) => !!value || 'El campo es obligatorio.',
     counter: (value: string | any[]) => value.length <= 20 || 'Maximo 20 caracteres',
@@ -32,6 +33,7 @@ const rules = {
 }
 
 function login() {
+    if(!form) return
     localStorage.setItem('Sesion', 'hola');
     navigateTo("/dashboard")
 }
@@ -39,23 +41,6 @@ function login() {
 </script>
 
 <style scoped>
-.textFild {
-    font-family: Inter;
-    font-weight: 600;
-    line-height: normal;
-    margin-top: .5rem;
-    width: 30vw;
-}
-
-
-#title-login {
-    color: #210011;
-    font-family: Inter;
-    font-size: 1.8rem;
-    font-style: normal;
-    font-weight: 800;
-    line-height: normal;
-}
 
 #btn-text {
     display: flex;
@@ -64,12 +49,17 @@ function login() {
 }
 
 p {
-    width: 50%;
+    width: 52%;
     color: #000;
     font-family: Inter;
     font-size: 1.3rem;
     font-weight: 700;
+}
 
+.btn {
+    width: 215px;
+    height: 60px;
+    border-radius: 12px;
 }
 
 @media (max-width: 1366px) {
@@ -97,22 +87,6 @@ p {
     }
 
 }
-
-
-@media (max-width: 665px) {
-
-    #title-login {
-        font-size: 1.5rem;
-    }
-
-    .textFild {
-        font-weight: 600;
-        margin-top: .5rem;
-        width: 60vw;
-    }
-
-}
-
 
 @media (max-width: 520px) {
 

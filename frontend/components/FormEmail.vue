@@ -6,7 +6,7 @@
 
             <v-text-field variant="solo-filled" :rules="[rules.required]" placeholder="0 0 0 0" type="number"
                 class="textFild"></v-text-field>
-            <v-btn :disabled="!form" type="submit" color="#474697" size="x-large">
+            <v-btn :disabled="!form" type="submit" color="#474697" size="x-large" class="btn">
                 {{ $t('Continue') }}
             </v-btn>
         </div>
@@ -61,32 +61,15 @@ function account() {
 }
 
 .textFild {
-    font-family: Inter;
-    font-weight: 600;
     margin-top: 1rem;
-    width: 30vw;
-}
-
-
-#title-login {
-    color: #210011;
-    font-family: Inter;
-    font-size: 1.8rem;
-    font-style: normal;
-    font-weight: 800;
-    line-height: normal;
 }
 
 #formAccount {
     display: flex;
 }
 
-@media (max-width: 960px) {
 
-    .textFild {
-        margin-top: .5rem;
-        width: 62vw;
-    }
+@media (max-width: 960px) {
 
     #form-title p {
         width: 55vw;
@@ -95,14 +78,6 @@ function account() {
 }
 
 @media (max-width: 520px) {
-    .textFild {
-        margin-top: .5rem;
-        width: 80vw;
-    }
-
-    .textFild-row {
-        width: 80vw;
-    }
 
     #form-title p {
         width: 85vw;
