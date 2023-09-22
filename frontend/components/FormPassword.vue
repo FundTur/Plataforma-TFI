@@ -33,7 +33,7 @@ const rules = {
 
 function CreatePssword() {
     if (!form) return
-    navigateTo("/dashboard")
+    navigateTo("/")
 }
 
 </script>

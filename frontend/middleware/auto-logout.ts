@@ -11,7 +11,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
     function logoutUser() {
       localStorage.removeItem("Sesion");
       console.log("Espera");
-      navigateTo("/");
+      navigateTo("/login");
     }
 
     window.addEventListener("mousemove", resetInactivityTimer);

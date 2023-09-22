@@ -17,6 +17,26 @@
                     <img src="/img/folder.svg" alt="">
                 </v-list-item>
             </v-list>
+
+
+            <template v-slot:append>
+                <div>
+                    <v-list density="compact" nav>
+                        <v-list-item>
+                            <img v-show="!btnSalir" src="/img/campana.png" alt="">
+                            <button @mousemove="ShowSalir" @mouseout="hidenSalir" v-show="btnSalir" @click="logout"><img
+                                    src="/img/salida.png" alt=""></button>
+                        </v-list-item>
+                        <v-divider></v-divider>
+                        <v-list-item>
+                            <button @mousemove="ShowSalir">
+                                <img src="/img/User.png" alt="">
+                            </button>
+                        </v-list-item>
+                    </v-list>
+                </div>
+            </template>
+
         </v-navigation-drawer>
         <v-navigation-drawer class="barra-busqueda" color="#F0F4F9" v-model="drawer" :rail="rail" @click="rail = false">
             <v-list>
@@ -61,10 +81,25 @@ const id = ref("")
 const { data: product, pending, error } = await useFetch(() => `https://rickandmortyapi.com/api/character/?name=${id.value}`)
 const drawer = ref(true)
 const rail = ref(true)
+const btnSalir = ref(false)
 
 const emits = defineEmits<{
     (event: 'onChangedShow', value: String): void
 }>();
+
+function logout() {
+    localStorage.removeItem("Sesion");
+    sessionStorage.removeItem("chips")
+    navigateTo("/login");
+}
+
+function ShowSalir() {
+    btnSalir.value = true
+}
+
+function hidenSalir() {
+    btnSalir.value = false
+}
 
 </script>
 

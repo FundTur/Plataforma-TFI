@@ -35,7 +35,7 @@ const rules = {
 function login() {
     if(!form) return
     localStorage.setItem('Sesion', 'hola');
-    navigateTo("/dashboard")
+    navigateTo("/")
 }
 
 </script>
