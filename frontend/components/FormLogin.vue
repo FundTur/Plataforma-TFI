@@ -33,7 +33,7 @@ const rules = {
 }
 
 function login() {
-    if(!form) return
+    if (!form) return
     localStorage.setItem('Sesion', 'hola');
     navigateTo("/")
 }
@@ -41,7 +41,6 @@ function login() {
 </script>
 
 <style scoped>
-
 #btn-text {
     display: flex;
     justify-content: space-between;
@@ -49,15 +48,16 @@ function login() {
 }
 
 p {
-    width: 52%;
+    width: 55%;
     color: #000;
     font-family: Inter;
     font-size: 1.3rem;
     font-weight: 700;
+    margin-left: 1rem;
 }
 
 .btn {
-    width: 215px;
+    width: 200px;
     height: 60px;
     border-radius: 12px;
 }
@@ -69,7 +69,7 @@ p {
     }
 
     p {
-        font-size: 1rem;
+        font-size: 1.1rem;
         margin-left: 1rem;
     }
 }
@@ -92,6 +92,21 @@ p {
 
     .textFild {
         width: 82vw;
+    }
+
+    #btn-text {
+        display: block;
+    }
+
+    .btn{
+        margin-bottom: 2rem;
+        width: 82vw;
+    }
+
+    p {
+        display: block;
+        width: 80vw;
+        text-align: center;
     }
 }
 </style>
