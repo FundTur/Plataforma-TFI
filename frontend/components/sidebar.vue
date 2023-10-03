@@ -61,7 +61,7 @@
 
             </v-list>
         </v-navigation-drawer>
-        <v-main style="height: 100vh">
+        <v-main id="container-main">
             <slot></slot>
         </v-main>
     </v-layout>
@@ -105,6 +105,11 @@ function hidenSalir() {
 
 
 <style scoped>
+#container-main {
+    height: 100vh;
+    background-color: white;
+}
+
 .icon {
     background-color: #474697;
     border-radius: 0px;
@@ -125,7 +130,6 @@ function hidenSalir() {
 
 #title-navbar span {
     color: #4F5464;
-    font-family: Inter;
     font-size: .875rem;
     font-weight: 600;
 }

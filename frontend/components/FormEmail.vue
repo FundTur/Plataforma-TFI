@@ -44,7 +44,6 @@ function account() {
 #form-title h1 {
     font-size: 2rem;
     color: #000;
-    font-family: Inter;
     font-style: normal;
     font-weight: 800;
     line-height: normal;
@@ -53,7 +52,6 @@ function account() {
 
 #form-title p {
     color: #18222F;
-    font-family: Inter;
     font-size: 1.2rem;
     font-weight: 500;
     width: 30vw;

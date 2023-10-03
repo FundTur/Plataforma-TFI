@@ -1,0 +1,90 @@
+.text-p {
+  overflow: hidden;
+  color: #000;
+  text-overflow: ellipsis;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-align: justify;
+}
+
+.title-h1 {
+  color: #000;
+  font-family: Inter;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.title-h6 {
+  color: var(--Text-secondary, #4f5464);
+  font-family: Inter;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.textFild {
+  font-family: Inter;
+  font-weight: 600;
+  margin-top: 0.5rem;
+  width: 30vw;
+}
+
+.text-chip {
+  color: var(--btn_hover, #fff);
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+#title-login {
+  color: #210011;
+  font-family: Inter;
+  font-size: 1.7rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+#container-btn {
+  display: flex;
+  justify-content: center;
+}
+
+.btn {
+  width: 30vw;
+  height: 60px;
+  border-radius: 12px;
+}
+
+@media (max-width: 960px) {
+  .textFild {
+    margin-top: 0.5rem;
+    width: 62vw;
+  }
+
+  .btn {
+    width: 62vw;
+  }
+}
+
+@media (max-width: 520px) {
+  .textFild {
+    margin-top: 0.5rem;
+    width: 80vw;
+  }
+
+  .textFild-row {
+    width: 80vw;
+  }
+
+  .btn {
+    width: 80vw;
+  }
+}

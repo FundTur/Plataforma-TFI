@@ -84,7 +84,6 @@ onMounted(() => {
 
 span {
     color: #4F5464;
-    font-family: Inter;
     font-size: 1rem;
     font-style: normal;
     font-weight: 600;
@@ -93,7 +92,6 @@ span {
 h2 {
     margin-top: .3rem;
     color: #000;
-    font-family: Inter;
     font-size: 1.5rem;
     font-style: normal;
     font-weight: 600;

@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   css: [
     "@/assets/css/reset.css",
-    "@/assets/css/styleForms.css",
+    "@/assets/css/styles.css",
     "@mdi/font/css/materialdesignicons.min.css",
   ],
   build: {

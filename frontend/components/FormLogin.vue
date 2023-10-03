@@ -50,7 +50,6 @@ function login() {
 p {
     width: 55%;
     color: #000;
-    font-family: Inter;
     font-size: 1.3rem;
     font-weight: 700;
     margin-left: 1rem;

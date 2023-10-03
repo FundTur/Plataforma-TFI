@@ -1,29 +1,31 @@
 {
-    "Accountcheck": "Account check",
-    "Continue": "Continue",
-    "ContinueTFI": "Continue to TFI",
-    "dashboard": {
-        "Files": "Files",
-        "Main": "Main",
-        "Search": "Search",
-        "Users": "Users"
-    },
-    "formulario": {
-        "Email": "Email",
-        "FirstName": "First Name",
-        "LastName": "Last Name",
-        "Password": "Password",
-        "PasswordConf": "Confirm your password",
-        "Phone": "Phone",
-        "User": "User"
-    },
-    "Login": "Login",
-    "Need help": "Need help",
-    "Recruitment": "Call",
-    "Register": "Register",
-    "SING IN": "SING IN",
-    "SING UP": "SING UP",
-    "TextCheck": "Next, enter the verification code that we sent to your email email@email.com",
-    "TextLogin": "¡Find the perfect call! We have an inventory of over 1400 actors who can support your project",
-    "TitlePassword": "Create your password"
+  "Accountcheck": "Account check",
+  "Continue": "Continue",
+  "ContinueTFI": "Continue to TFI",
+  "dashboard": {
+    "Files": "Files",
+    "Main": "Main",
+    "Search": "Search",
+    "Users": "Users"
+  },
+  "formulario": {
+    "Email": "Email",
+    "FirstName": "First Name",
+    "LastName": "Last Name",
+    "Password": "Password",
+    "PasswordConf": "Confirm your password",
+    "Phone": "Phone",
+    "User": "User"
+  },
+  "Login": "Login",
+  "Need help": "Need help",
+  "Recruitment": "Call",
+  "Register": "Register",
+  "SING IN": "SING IN",
+  "SING UP": "SING UP",
+  "TextCheck": "Next, enter the verification code that we sent to your email email@email.com",
+  "TextLogin": "¡Find the perfect call! We have an inventory of over 1400 actors who can support your project",
+  "TitlePassword": "Create your password",
+  "Subscribe": "Subscribe",
+  "Price": "Price"
 }

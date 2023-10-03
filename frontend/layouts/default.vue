@@ -142,7 +142,6 @@ useHead({
 #span-help {
     text-align: center;
     color: #18222F;
-    font-family: Inter;
     font-size: 1.3rem;
     font-weight: 700;
     margin-top: inherit;
