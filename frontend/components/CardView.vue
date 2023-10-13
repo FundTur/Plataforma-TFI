@@ -25,13 +25,14 @@
 
                 <v-card-title>
                     <span> {{ $t('Price') }} : $ {{ cardData.price }}</span>
-                    <v-btn v-show="showImg" type="submit"   color="#474697" size="large">
-                    {{ $t('Subscribe') }}
-                </v-btn>
+                    <v-btn v-show="showImg" type="submit" color="#474697" size="large">
+                        {{ $t('Subscribe') }}
+                    </v-btn>
                 </v-card-title>
 
                 <v-overlay :model-value="isHovering" contained class="align-center justify-center">
-                    <v-btn @click="showCard" variant="flat"><v-icon>mdi-arrow-top-right-bottom-left</v-icon></v-btn>
+                    <v-btn @click="showCard" variant="plain"><v-icon
+                            color="white">mdi-arrow-top-right-bottom-left</v-icon></v-btn>
                 </v-overlay>
             </v-card>
         </v-hover>
@@ -51,12 +52,16 @@ function showCard() {
 }
 
 const props = defineProps<{
-    cardData:string
+    cardData: object
 }>()
 
 </script>
 
 <style scoped>
+.v-icon {
+    font-size: 50px;
+}
+
 .v-card {
     border-radius: 20px;
     border: 1px solid var(--Text-secondary, #4F5464);
@@ -74,7 +79,7 @@ const props = defineProps<{
 }
 
 .v-card-title button {
-border-radius: 12px;
+    border-radius: 12px;
 
 }
 

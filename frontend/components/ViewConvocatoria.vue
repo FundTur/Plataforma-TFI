@@ -142,6 +142,8 @@ const groupedItems = computed(() => {
 .CardView {
     margin: 5px;
     margin-bottom: 1rem;
+    min-width: 416px;
+    min-height: 274px;
 }
 
 </style>

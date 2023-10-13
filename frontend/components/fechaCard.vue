@@ -14,7 +14,7 @@ const props = defineProps<{
 
 <style scoped>
 .container {
-    width: 95%;
+    width: 99%;
     height: 2rem;
     margin: auto;
     border-bottom: 2px solid #4F5464;
